@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css2?family=Contrail+One&display=swap');
+body{
+    font-family: 'Contrail One';
+}
+
+.swal2-styled.swal2-confirm{
+    background-color: #000000 !important;
+    color: #fff !important;
+}
+.swal2-styled.swal2-confirm:hover{
+    background-color: #535353 !important;
+    color: #fff !important;
+}
+
+.swal2-popup{
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    border: solid 3px #000000 !important;
+}

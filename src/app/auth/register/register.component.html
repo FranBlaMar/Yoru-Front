@@ -1,0 +1,57 @@
+<section class="background">
+
+    <div class="text-center">
+        <img class="logo" src="../../../assets/img/Logo.png">
+    </div>
+    <div class="container text-center">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10">
+                <div class="card" style="border-radius: 1%;">
+                    <div class="row g-0">
+                        <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                            <div class="card-body p-4 ">
+
+                                <form class="form" [formGroup]="formularioRegistro">    
+                                    <h4 class="mb-3 pb-3"><strong>Registro</strong></h4>
+                                    <div class="form-outline mb-3 row">
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control form-control-lg" formControlName="email" name="email" readonly/>
+                                            </div>
+                                    </div>
+                                    <div class="form-outline mb-3 row">
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control form-control-lg" name="userName" placeholder = "Nombre de usuario"  formControlName="userName"/>
+                                            <span class="form-text text-danger" *ngIf="formularioRegistro.controls['userName'].errors && formularioRegistro.controls['userName'].touched && !validarUserName()"> El nombre de usuario no puede estar vacío o tener una longitud inferior a 3 caracteres</span>   
+                                            <span class="form-text text-danger" *ngIf="validarUserName()"> Nombre de usuario ya existente</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-outline mb-3 row">
+                                    
+                                        <div class="col-sm-9">
+                                            <input type="password" class="form-control form-control-lg" name="password" placeholder = "Contraseña"  formControlName="password"/>
+                                            <span class="form-text text-danger" *ngIf="formularioRegistro.controls['password'].errors && formularioRegistro.controls['password'].touched">Requisitos:<br>- Mínimo 8 caracteres<br>- Mínimo un número<br>- Uso de letras mayúsculas y minúsculas </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-outline mb-3 row">
+                                        <div class="col-sm-9">
+                                          <input type="password" class="form-control form-control-lg" name="pasword2" placeholder = "Repetir Contraseña"  formControlName="repetirPassword"/>
+                                          <span class="form-text text-danger" *ngIf="formularioRegistro.controls['repetirPassword'].errors && formularioRegistro.controls['repetirPassword'].touched">Las contraseñas no coinciden </span>
+                                      </div>
+                                    </div>
+                                    <div class="pt-1 mb-4">
+                                        <button class="btn btn-dark btn-lg btn-block" [disabled]="formularioRegistro.invalid" (click)="register()"type="submit">Registrarse</button>
+                                    </div>
+                                    <p class="5 pb-lg-2">¿Ya tienes una cuenta?  <a [routerLink]="['']"> Inicia sesión aquí</a></p>
+
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-5 d-none d-sm-block">
+                            <img class="img-fluid" alt="IMAGEN LOGIN" src="../../../assets/img/LoginImagen.jpg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

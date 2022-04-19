@@ -1,0 +1,56 @@
+<section class="background">
+
+    <div class="text-center">
+        <img class="logo" src="../../../assets/img/Logo.png">
+    </div>
+    <div class="container text-center">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10">
+                <div class="card" style="border-radius: 1%;">
+                    <div class="row g-0">
+                        <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                            <div class="card-body p-4 ">
+
+                                <form class="form"  (ngSubmit)="login()">    
+                                    <h4 class="mb-3 pb-3"><strong>Iniciar Sesión</strong></h4>
+                                    <div class="form-outline mb-4 row">
+
+                                        <div class="control col-sm-9 has-icons-right">
+                                            <input class="input form-control form-control-lg" type="text" [(ngModel)]="user.email" placeholder="Correo Electrónico" name="email"  #email="ngModel" required>
+                                            <span class="icon is-small is-right">
+                                                <i class="bi bi-envelope-fill"></i>
+                                            </span>
+                                            <span class="form-text text-danger" *ngIf="email.errors && email.touched"> El correo es obligatorio </span>
+                                        </div>
+                                      <br><br>
+                                    </div>
+                                    <div class="form-outline mb-4 row">
+
+                                        <div class="control col-sm-9 has-icons-right">
+                                            <input class="input form-control form-control-lg" type="password" [(ngModel)]="user.password" placeholder="Contraseña" name="password"  #password="ngModel" required>
+                                            <span class="icon is-small is-right">
+                                                <i class="bi bi-key-fill"></i>
+                                            </span>
+                                            <span class="form-text text-danger" *ngIf="password.errors && password.touched"> La contraseña es obligatoria </span>
+
+                                        </div>
+                                    </div>
+                                    <div class="pt-1 mb-4">
+                                        <button class="btn btn-dark btn-lg btn-block" type="submit">Iniciar Sesión</button>
+                                    </div>
+                                    <p class="mb-5 pb-lg-2">¿No tienes una cuenta?  <a [routerLink]="['/verificación']"> Regístrate aquí</a></p>
+
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-5 d-none d-sm-block">
+                            <img class="img-fluid" alt="IMAGEN LOGIN" src="../../../assets/img/LoginImagen.jpg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
