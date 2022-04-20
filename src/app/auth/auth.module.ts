@@ -22,7 +22,6 @@ import { EmailVerificationCodeIntroduceComponent } from './email-verification-co
     CommonModule,
     RouterModule,
     AuthRoutingModule,
-    RouterModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule

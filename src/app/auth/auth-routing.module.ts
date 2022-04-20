@@ -19,7 +19,7 @@ const routes: Routes = [
   {
     path:"registro", component: RegisterComponent
   },
-  { path: "**", component: LoginComponent}
+  { path: "**", redirectTo: ''}
 ];
 
 @NgModule({
