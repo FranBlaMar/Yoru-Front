@@ -1,8 +1,5 @@
-<p>realizar-publicacion works!</p>
-
-<form>
-    <label name="titulo">Titulo: </label>
-    <input type="text" name="titulo">
-    <br>
-    <input type="file">
+<form (submit)="subirImagen()">
+    <input type="file" (change)="obtenerFile($event)" name="file">
+    <input type="text" [(ngModel)]="titulo" name="titulo">
+    <input type="submit">
 </form>

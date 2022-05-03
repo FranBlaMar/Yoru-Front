@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { userCompleto } from 'src/app/interfaces/user.interface';
+import { PublicacionService } from 'src/app/publicacion/services/publicacion.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -17,7 +18,6 @@ export class PerfilComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerUsuarioLogeado();
   }
-
 
   //metodo para obtener el usuario 
   obtenerUsuarioLogeado(){

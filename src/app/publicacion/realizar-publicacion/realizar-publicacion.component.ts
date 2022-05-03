@@ -1,3 +1,4 @@
+import { Byte } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { PublicacionService } from '../services/publicacion.service';
 
@@ -10,19 +11,31 @@ export class RealizarPublicacionComponent implements OnInit {
 
   constructor(private servicio: PublicacionService) { }
 
-  imagen!: File;
+  imagen!: FileList;
   titulo: string = "";
   autor: string = "";
+
   ngOnInit(): void {
   }
 
+  obtenerFile(event: any): void {
+    this.imagen = event.target.files;
+  }
 
-  //Método para subir una imagen 
-  subirImagen(){
-    this.autor = localStorage.getItem("email") || "";
-    this.servicio.enviarPublicacion(this.imagen,this.titulo, this.autor).subscribe(
-      (resp) => console.log(resp)
-    );
+   //Método para subir una imagen 
+   subirImagen(){
+    let file: File | null = this.imagen.item(0);
+    if(file){
+      this.autor = localStorage.getItem("email") || "";
+      this.servicio.enviarPublicacion(file,this.titulo, this.autor).subscribe(
+        (resp) => console.log(1)
+        );
+    }
+  }
+
+  //Método para transformar un array de bytes en url base 64
+  transformarAImagen(file: Byte[]){
+    return 'data:image/png;base64,' + btoa(String.fromCharCode(...new Uint8Array(file))) + file;
   }
 
 }
