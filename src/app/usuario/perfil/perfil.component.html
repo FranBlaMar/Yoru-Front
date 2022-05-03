@@ -1,51 +1,32 @@
 <section class="background">
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-          <a class="navbar-item">
-            <img src="../../../assets/img/Logo.png" width="112" height="28">
-          </a>
+
+  <div class="card m-auto" style="width: 80%;" *ngIf="visible">
+    <div class="card-body m-5">
+
+      <div class="d-flex justify-content-around flex-wrap">
+
+
+        <img class="img" src="../../../assets/img/user.png">
+
+        <p class="text-center numeros">{{user.numeroPublicaciones}} Publicaciones</p> 
+
+        <p class="text-center numeros">{{user.numeroSeguidores}}  Seguidores</p> 
+
+        <p class="text-center numeros">{{user.numeroSeguidos}}  Seguidos</p> 
+
+
+      </div>
+
+      <hr>
+
+      <h5 class="card-title">{{user.userName}}</h5>
+
+      <p class="card-text">{{user.aboutMe}}</p>
+
+      <hr>
       
-          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </a>
-        </div>
-      
-        <div id="navbarBasicExample" class="navbar-menu">
-          <div class="navbar-start">
-            <a class="navbar-item">
-              Home
-            </a>
-      
-            <a class="navbar-item">
-              Documentation
-            </a>
-      
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link">
-                More
-              </a>
-      
-              <div class="navbar-dropdown">
-                <a class="navbar-item">
-                  About
-                </a>
-                <a class="navbar-item">
-                  Jobs
-                </a>
-                <a class="navbar-item">
-                  Contact
-                </a>
-                <hr class="navbar-divider">
-                <a class="navbar-item">
-                  Report an issue
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
-      <h1>NO TERMINADO</h1>
+    </div>
+  </div>
+
 </section>
 

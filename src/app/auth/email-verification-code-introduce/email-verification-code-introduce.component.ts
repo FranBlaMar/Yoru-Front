@@ -25,7 +25,7 @@ export class EmailVerificationCodeIntroduceComponent implements OnInit {
   //Método para comprobar codigo de verificacion del correo
   comprobarCodigo(){
     if(this.codigoVerificacionReal == this.codigoVerificacionIntroducido){
-      this.route.navigateByUrl("/registro");
+      this.route.navigateByUrl("main/registro");
     }
     else{
       Swal.fire({

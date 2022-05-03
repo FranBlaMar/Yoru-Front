@@ -5,8 +5,11 @@ import { PerfilComponent } from './perfil/perfil.component';
 const routes: Routes = [
 
   {
-    path:"", component: PerfilComponent, pathMatch: "full"
+    path:"perfil", component: PerfilComponent, pathMatch: "full"
   },
+  {
+    path:"**", redirectTo: "perfil"
+  }
 ];
 
 @NgModule({

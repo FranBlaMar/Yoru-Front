@@ -11,15 +11,14 @@ const routes: Routes = [
     path:"", component: LoginComponent, pathMatch: "full"
   },
   {
-    path:"verificación", component: EmailVerificationComponent
+    path:"verificacion", component: EmailVerificationComponent
   },
   {
-    path:"códigoVerificación", component: EmailVerificationCodeIntroduceComponent
+    path:"codigoVerificacion", component: EmailVerificationCodeIntroduceComponent
   },
   {
     path:"registro", component: RegisterComponent
-  },
-  { path: "**", redirectTo: ''}
+  }
 ];
 
 @NgModule({

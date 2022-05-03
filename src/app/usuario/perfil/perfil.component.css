@@ -1,31 +1,25 @@
 
 
-button:hover {
-    box-shadow: 0px 0px 15px rgb(0,0,0);
-}
+.img{
 
-a{
-    text-decoration: none;
-    color: rgb(0, 26, 255);
-}
-.col-sm-9{
-    margin: auto;
-}
-
-.icon{
-    margin-right: 15px;
-  
-}
-.logo{
-    max-width: 10rem;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
+    margin: 2rem;
+    width: 100px;
+    height: 100px;
     justify-content: center;
+    border: 2px solid #000;
+    border-radius:250px;
+}
+
+.numeros{
+    margin-top: 6%;
 }
 .background{
 
     height: 100vh;
-    background-image: url(../../../assets/img/FondoLogin.jpg);
-    background-size: cover;
+    background-color: black;
+    background-image: url(../../../assets/img/fondo.jpg);
+    
+    
+
 }
 
