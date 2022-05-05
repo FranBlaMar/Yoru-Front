@@ -77,7 +77,7 @@ export class RegisterComponent implements OnInit {
     .subscribe({
       next: (resp) => {
         localStorage.setItem("jwt",resp.jwt_token), localStorage.setItem("email",this.formularioRegistro.value.email);
-        this.route.navigateByUrl("usuario") 
+        this.route.navigateByUrl("main") 
       },
       error: (err) => {
         Swal.fire({

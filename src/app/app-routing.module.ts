@@ -6,18 +6,14 @@ import { Guardian } from './guardian.service';
 const routes: Routes = [
 
   {
-    path: 'main',
+    path: '',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
-    path: 'usuario',
-    loadChildren: () => import('./usuario/usuario.module').then(m => m.UsuarioModule),canActivate: [Guardian]
+    path: 'main',
+    loadChildren: () => import('./main/main.module').then(m => m.MainModule),canActivate: [Guardian]
   },
-  {
-    path: 'publicacion',
-    loadChildren: () => import('./publicacion/publicacion.module').then(m => m.PublicacionModule),canActivate: [Guardian]
-  },
-  { path: "**", redirectTo: 'main'}
+  { path: "**", redirectTo: ''}
 
 
 ];

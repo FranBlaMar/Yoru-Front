@@ -21,3 +21,8 @@ body{
     background-repeat: no-repeat !important;
     border: solid 3px #000000 !important;
 }
+
+body{
+    background-image: url(./assets/img/fondo.jpg);
+    min-height: 110vh;
+}

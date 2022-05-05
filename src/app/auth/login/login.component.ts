@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
       next: (resp) => {
         localStorage.setItem("jwt",resp.jwt_token);
         localStorage.setItem("email",this.user.email);
-        this.route.navigateByUrl("usuario") 
+        this.route.navigateByUrl("main") 
       },
       error: (err) => {
         Swal.fire({

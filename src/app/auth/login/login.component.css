@@ -18,14 +18,8 @@ a{
 }
 .logo{
     max-width: 10rem;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
     justify-content: center;
-}
-.background{
-
-    height: 100vh;
-    background-image: url(../../../assets/img/FondoLogin.jpg);
-    background-size: cover;
 }
 
