@@ -38,7 +38,7 @@ export class AuthService {
         this.http.post<number>(url, email.toString()).subscribe({
             next: (resp) => {
                 this.codVerificacion = resp;
-                this.route.navigateByUrl("main/codigoVerificacion")
+                this.route.navigateByUrl("/codigoVerificacion")
             },
             error: (err) => {
                 Swal.fire({

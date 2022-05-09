@@ -23,6 +23,5 @@ export class EmailVerificationComponent implements OnInit {
   //Enviar codigo de confirmación al correo introducido
   sendConfirmationCodeToEmail(){
     this.servicio.emailVerify(this.formularioRegistro.value.email)
-
   }
 }
