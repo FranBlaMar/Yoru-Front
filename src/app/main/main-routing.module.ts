@@ -6,14 +6,14 @@ import { Guardian } from '.././guardian.service';
 const routes: Routes = [
 
   {
-    path: '',
+    path: 'usuario',
     loadChildren: () => import('./usuario/usuario.module').then(m => m.UsuarioModule),canActivate: [Guardian]
   },
   {
     path: 'publicacion',
     loadChildren: () => import('./publicacion/publicacion.module').then(m => m.PublicacionModule),canActivate: [Guardian]
   },
-  { path: "**", redirectTo: ''}
+  { path: "**", redirectTo: 'usuario'}
 
 
 ];

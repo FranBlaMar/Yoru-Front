@@ -4,5 +4,7 @@ import { userCompleto } from "./user.interface";
 export interface Publicacion{
     titulo: String,
     imagen: Byte[],
-    autor: userCompleto
+    autor: userCompleto,
+    fechaPublicacion: Date,
+    likes: number
 }

@@ -4,7 +4,8 @@ import { RealizarPublicacionComponent } from './realizar-publicacion/realizar-pu
 
 const routes: Routes = [
 
-    {path:'', component: RealizarPublicacionComponent, pathMatch: "full"}
+    {path:'', component: RealizarPublicacionComponent, pathMatch: "full"},
+    {path: "**", redirectTo: ''}
 ];
 
 @NgModule({

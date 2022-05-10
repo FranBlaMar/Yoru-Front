@@ -13,7 +13,6 @@ export class RealizarPublicacionComponent implements OnInit {
 
   imagen!: FileList;
   titulo: string = "";
-  autor: string = "";
 
   ngOnInit(): void {
   }
@@ -26,9 +25,8 @@ export class RealizarPublicacionComponent implements OnInit {
    subirImagen(){
     let file: File | null = this.imagen.item(0);
     if(file){
-      this.autor = localStorage.getItem("email") || "";
-      this.servicio.enviarPublicacion(file,this.titulo, this.autor).subscribe(
-        (resp) => console.log(1)
+      this.servicio.enviarPublicacion(file,this.titulo).subscribe(
+        (resp) => console.log(resp)
         );
     }
   }

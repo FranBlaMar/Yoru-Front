@@ -23,4 +23,20 @@
       <p class="card-text">{{user.aboutMe}}</p>
     </div>
   </div>
+<hr>
+  <div class="d-flex flex-wrap justify-content-around"> 
+    
+    <div class="card" style="width: 18rem;" *ngFor="let publi of publicaciones">
+      <div class="card-head"> 
+        <p> {{publi.autor.userName}}</p>
+        <p class="small"> {{publi.fechaPublicacion}}</p>
+        </div>
+      <img src="{{transformarAImagen(publi.imagen)}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <p class="card-title">{{publi.likes}} Likes</p>
+        <h4 class="card-text">{{publi.titulo}}</h4>
+      </div>
+      <hr>
+    </div>
+  </div>
 </div>
