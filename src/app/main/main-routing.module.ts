@@ -1,25 +1,33 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Guardian } from '.././guardian.service';
+import { BuscarUsuarioComponent } from './buscar-usuario/buscar-usuario.component';
+import { MostrarUsuarioBuscadoComponent } from './mostrar-usuario-buscado/mostrar-usuario-buscado.component';
+import { PerfilComponent } from './perfilUsuario/perfil.component';
+import { RealizarPublicacionComponent } from './publicacion/realizar-publicacion.component';
 
 
 const routes: Routes = [
 
   {
-    path: 'usuario',
-    loadChildren: () => import('./usuario/usuario.module').then(m => m.UsuarioModule),canActivate: [Guardian]
+    path: 'perfil', component: PerfilComponent,canActivate: [Guardian]
   },
   {
-    path: 'publicacion',
-    loadChildren: () => import('./publicacion/publicacion.module').then(m => m.PublicacionModule),canActivate: [Guardian]
+    path: 'usuario/:nombreUsuario', component: MostrarUsuarioBuscadoComponent, canActivate: [Guardian]
   },
-  { path: "**", redirectTo: 'usuario'}
+  {
+    path: 'usuario', component: BuscarUsuarioComponent ,canActivate: [Guardian]
+  },
+  {
+    path: 'publicacion', component: RealizarPublicacionComponent,canActivate: [Guardian]
+  },
+  { path: "**", redirectTo: 'perfil'}
 
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class MainRoutingModule { 

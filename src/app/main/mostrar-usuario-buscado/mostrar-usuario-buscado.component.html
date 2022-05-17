@@ -1,0 +1,47 @@
+
+<div class="datosUser" *ngIf="visible">
+    <div class="d-flex justify-content-around flex-wrap">
+  
+      <div class="fotoPerfil text-center">
+  
+        <div class="">
+          <img *ngIf="user.fotoPerfil" class="img" src="{{transformarAImagen(user.fotoPerfil)}}">
+          <img *ngIf="!user.fotoPerfil" class="img" src="../../../assets/img/user.png">
+        </div>
+      </div>
+  
+      <section class="infoPerfil d-flex justify-content-around flex-wrap">
+  
+        <p class="text-center numeros">{{user.numeroPublicaciones}} Publicaciones</p> 
+  
+        <p class="text-center numeros">{{user.numeroSeguidores}}  Seguidores</p> 
+  
+        <p class="text-center numeros">{{user.numeroSeguidos}}  Seguidos</p> 
+  
+      </section>
+      <div>
+        <h5 class="card-title">{{user.userName}}</h5>
+  
+        <p class="card-text">{{user.aboutMe}}</p>
+      </div>
+    </div>
+  <hr>
+    <div class="d-flex flex-wrap justify-content-around"> 
+      
+      <div class="card" style="width: 18rem;" *ngFor="let publi of publicaciones">
+        <div class="card-head"> 
+          <p> {{publi.autor.userName}}</p>
+          <p class="small"> {{publi.fechaPublicacion}}</p>
+          </div>
+        <img src="{{transformarAImagen(publi.imagen)}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <div class="d-flex flex-wrap align-items-center">
+          <p class="card-title">{{publi.likes}} Likes</p> 
+          <i class="bi bi-heart" ></i>
+          </div>
+          <p class="card-text">{{publi.titulo}}</p>
+        </div>
+        <hr class="text-white">
+      </div>
+    </div>
+  </div>

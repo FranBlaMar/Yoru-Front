@@ -1,8 +1,9 @@
+import { Byte } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
-import { userCompleto } from 'src/app/interfaces/user.interface';
+import { userCompleto, userRegistro } from 'src/app/interfaces/user.interface';
 import Swal from 'sweetalert2';
 import { AuthService } from '../services/auth.service';
 
@@ -13,18 +14,26 @@ import { AuthService } from '../services/auth.service';
 })
 export class RegisterComponent implements OnInit {
 
+  imagen!: FileList;
 
   formularioRegistro: FormGroup = this.builder.group({
     userName: [ '', [ Validators.required, Validators.minLength(3) ],  [this.comprobarNombreUsuario()]],
     password: ['',[Validators.required, Validators.minLength(8), Validators.pattern('(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=[^0-9]*[0-9]).{8,}')]],
     repetirPassword: ['', [Validators.required, this.validarContraseña ]],
-    email: [this.servicio.getCorreo()]
+    email: [this.servicio.getCorreo()],
+    fotoPerfil: [this.imagen, []]
   },{
     validators: [this.validarContraseña('password','repetirPassword')]
   });
 
 
+  //Método para obtene runa imagen de un file input
+  obtenerFile(event: any): void {
+    this.imagen = event.target.files;
+  }
+
   constructor(private builder: FormBuilder, private servicio: AuthService, private route: Router) { }
+
 
   ngOnInit(): void {
   }
@@ -63,17 +72,9 @@ export class RegisterComponent implements OnInit {
 
   //Metodo para registrar un usuario
   register(){
-    console.log(this.formularioRegistro.value)
-    let user: userCompleto = {
-      email: this.formularioRegistro.value.email,
-      password: this.formularioRegistro.value.password,
-      userName: this.formularioRegistro.value.userName,
-      aboutMe: '',
-      numeroPublicaciones: 0,
-      numeroSeguidores: 0,
-      numeroSeguidos: 0
-    }
-    this.servicio.register(this.formularioRegistro.value)
+    let file: File | null = this.imagen.item(0);
+    if(file){
+    this.servicio.register(this.formularioRegistro.value.email,this.formularioRegistro.value.userName, this.formularioRegistro.value.password, file )
     .subscribe({
       next: (resp) => {
         localStorage.setItem("jwt",resp.jwt_token), localStorage.setItem("email",this.formularioRegistro.value.email);
@@ -93,6 +94,7 @@ export class RegisterComponent implements OnInit {
         })
       }
     })
+  }
   }
 
 }

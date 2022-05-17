@@ -26,9 +26,15 @@ export class AuthService {
     }
 
     //Método para registrar
-    register(user: userCompleto){
+    register(email: string, userName: string, password: string, fotoPerfil: File){
         const url = `${this.URLBase}/auth/register`;
-        return this.http.post<RespuestaAuth>(url, user);
+        const datos: FormData = new FormData();
+        datos.append('email', email);
+        datos.append('file', fotoPerfil);
+        datos.append('userName', userName);
+        datos.append('password', password);
+        
+        return this.http.post<RespuestaAuth>(url, datos);
     }
 
     //Método para enviar correo de confirmación
@@ -72,9 +78,9 @@ export class AuthService {
         return this.http.get<userCompleto>( url, { headers } ) 
     }
   
-    //Método para obtener un usuario por su email para comprobar si está en uso
-    comprobarNombreUsuario(userName: string):Observable<userCompleto>{
-        const url = `${ this.URLBase }/auth/${userName}`;
-        return this.http.get<userCompleto>(url)
+    //Método para obtener un usuario por su nombreDeUsuario para comprobar si está en uso
+    comprobarNombreUsuario(userName: string):Observable<userCompleto[]>{
+        const url = `${ this.URLBase }/user/${userName}`;
+        return this.http.get<userCompleto[]>(url)
     }
 }

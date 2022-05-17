@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Publicacion } from 'src/app/interfaces/publicacion.interface';
-import { userCompleto } from 'src/app/interfaces/user.interface';
+
 import { environment } from 'src/environments/environment';
 
 @Injectable({

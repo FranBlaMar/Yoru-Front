@@ -1,0 +1,38 @@
+
+
+
+  <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal">Seleccione una imagen</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="file-loading">
+            <input id="input-b9" name="input-b9[]" multiple type="file" (change) = "obtenerFile($event)" >
+          </div>
+          <div id="kartik-file-errors"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Subir Imagen</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="tarjetaFormulario text-center col-10 col-lg-6 mt-2 m-auto">
+    <form (submit)="subirImagen()">
+        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal">
+            <i class="bi bi-camera"></i><br>
+            Subir Imagen
+        </button>
+        <div *ngIf="imagen">
+            <p class="text-success">Imagen seleccionada !</p>
+            <input class="tituloInput" type="text" [(ngModel)]="titulo" name="titulo" placeholder="Escribe aquí tu pie de foto...">
+            <br><br>
+            <input class="btn btn-dark btn-lg btn-block enviar" type="submit">
+        </div>
+    </form>
+</div>

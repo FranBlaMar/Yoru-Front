@@ -23,6 +23,8 @@ body{
 }
 
 body{
-    background-image: url(./assets/img/fondo.jpg);
+    background-image: url(./assets/img/fondo2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
     min-height: 110vh;
 }
