@@ -1,19 +1,31 @@
 
 .datosUser{
-    background: rgb(255,255,255,0.7);
+    background-color: transparent;
     max-width: 75%;
     margin: auto;
     margin-top: 2rem;
-    backdrop-filter: blur(5px);
-    border: 3px solid rgb(0,0,0);
+    backdrop-filter: blur(150px);
+
 
 }
 .fotoPerfil{
     min-width: 25%;
     margin: auto;
 }
+a{
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: rgb(0,0,0);
+}
 p{
     margin: 1rem;
+    color: rgb(0, 0, 0);
+    font-size:larger;
+}
+
+h5{
+    margin: 1rem;
+    color: rgb(0, 0, 0);
 }
 .infoPerfil{
     min-width: 75%;

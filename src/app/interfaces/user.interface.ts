@@ -1,4 +1,5 @@
 import { Byte } from "@angular/compiler/src/util"
+import { Publicacion } from "./publicacion.interface"
 
 export interface userLogin{
     email: string,
@@ -13,7 +14,10 @@ export interface userCompleto{
     numeroPublicaciones: number,
     numeroSeguidores: number,
     numeroSeguidos: number,
-    fotoPerfil: Byte[]
+    fotoPerfil: Byte[],
+    publicaciones: Publicacion[],
+    seguidores: userCompleto[],
+    seguidos: userCompleto[]
 }
 
 export interface userRegistro{

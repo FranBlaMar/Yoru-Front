@@ -23,8 +23,7 @@ body{
 }
 
 body{
-    background-image: url(./assets/img/fondo2.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-image: url(./assets/img/fondo4.jpg);
+
     min-height: 110vh;
 }

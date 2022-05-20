@@ -37,6 +37,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
   //Validación personalizada para comprobar que el usuario introduce correctamente su contraseña
   validarContraseña( contraseña: string, repetirContraseña: string) {
     return (form:  AbstractControl) =>{
@@ -61,7 +62,8 @@ export class RegisterComponent implements OnInit {
       return this.servicio.comprobarNombreUsuario(userName)
       .pipe(
         map( res => {return res != null ? { existente: true } : null}
-      ))
+      )
+      )
     }
   }
 

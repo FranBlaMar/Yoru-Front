@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
   //Metodo para cerrar sesion 
   cerrarSesion(){
     localStorage.removeItem("jwt");
-    localStorage.removeItem("email")
+    localStorage.removeItem("email");
     this.router.navigateByUrl('');
   }
 

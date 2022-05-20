@@ -22,7 +22,7 @@
     <div>
       <h5 class="card-title">{{user.userName}}</h5>
 
-      <p class="card-text">{{user.aboutMe}}</p>
+      <p class="card-text">{{user.aboutMe}} <a class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#modalAboutMe"></a></p>
     </div>
   </div>
 <hr>
@@ -30,19 +30,31 @@
     
     <div class="card" style="width: 18rem;" *ngFor="let publi of publicaciones">
       <div class="card-head"> 
-        <p> {{publi.autor.userName}}</p>
-        <p class="small"> {{publi.fechaPublicacion}}</p>
+        <p  class="text-white"> {{publi.autor.userName}}</p>
+        <p class="small  text-white"> {{publi.fechaPublicacion}}</p>
         </div>
       <img src="{{transformarAImagen(publi.imagen)}}" class="card-img-top" alt="...">
       <div class="card-body">
         <div class="d-flex flex-wrap align-items-center">
-        <p class="card-title">{{publi.likes}} Likes</p> 
+        <p class="card-title  text-white">{{publi.likes}} Likes</p> 
         <i class="bi bi-heart" (click)="darLike()" *ngIf="!like"></i>
         <i class="bi bi-heart-fill" (click)="darLike()" *ngIf="like"></i>
         </div>
-        <p class="card-text">{{publi.titulo}}</p>
+        <p class="card-text  text-white">{{publi.titulo}}</p>
       </div>
       <hr class="text-white">
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalAboutMe" tabindex="-1" aria-labelledby="modalAboutMe" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-fullscreen-lg-down m-auto mt-5">
+    <div class="modal-content col-8 m-auto ">
+      <textarea class="mt-5 col-8 m-auto" [(ngModel)]= "aboutMe" id="aboutMe" placeholder="Introduzca su presentación..."></textarea>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-dark" data-bs-dismiss="modal" (click)= "editarUsuario()" >Realizar cambios</button>
+      </div>
     </div>
   </div>
 </div>

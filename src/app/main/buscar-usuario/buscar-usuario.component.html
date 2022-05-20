@@ -1,7 +1,7 @@
 <div class="fondo col-10 col-lg-8 m-auto text-center mt-2">
     <br>
-    <div class="control col-sm-9 has-icons-right text-center m-auto">
-        <input class="input form-control form-control-lg text-center " type="text" placeholder="Introduzca un nombre..." name="busqueda"  [(ngModel)]="busqueda" (change) ="buscarUsuario()">
+    <div class="control col-sm-5 col-lg-9 has-icons-right text-center m-auto">
+        <input class="input m-auto form-control form-control-lg text-center " type="text" placeholder="Introduzca un nombre..." name="busqueda"  [(ngModel)]="busqueda" (change) ="buscarUsuario()">
         <span class="icon is-small is-right">
             <i class="bi bi-search"></i>
         </span>
@@ -10,15 +10,15 @@
     <h3 *ngIf="historialVacio" class="text-white"> No hay historial de busqueda </h3>
     
     <div *ngIf="!historialVacio && !resultados">
-        <h4 class="text-white"> Historial de busqueda...</h4>
+        <h4 class="text-white mt-4"> Historial de busqueda...</h4>
         <div *ngFor="let usuario of historial">
-            <div class="usuario d-flex flex-wrap col-10 col-lg-8 m-auto mt-5">
+            <div class="usuario d-flex flex-wrap col-10 col-lg-8 m-auto mt-3">
                 <div class="">
                     <img *ngIf="usuario.fotoPerfil" [routerLink]="[usuario.userName]" class="img" src="{{transformarAImagen(usuario.fotoPerfil)}}">
                     <img *ngIf="!usuario.fotoPerfil" [routerLink]="[usuario.userName]" class="img" src="../../../assets/img/user.png">
                 </div>
                 <p class="nombreUser"> {{usuario.userName}}</p>
-                <p class="info"> {{usuario.aboutMe}}</p>
+                <p class="info m-auto align-items-center justify-content-center d-flex flex-wrap"> {{usuario.aboutMe}}</p>
             </div>
         </div>
     </div>
@@ -29,7 +29,7 @@
                 <img *ngIf="!usuario.fotoPerfil" [routerLink]="[usuario.userName]" class="img" src="../../../assets/img/user.png">
             </div>
             <p class="nombreUser" [routerLink]="[usuario.userName]"> {{usuario.userName}}</p>
-            <p class="info" [routerLink]="[usuario.userName]"> {{usuario.aboutMe}}</p>
+            <p class="info m-auto align-items-center justify-content-center d-flex flex-wrap" [routerLink]="[usuario.userName]"> {{usuario.aboutMe}}</p>
         </div>
     </div>
     <br><br>

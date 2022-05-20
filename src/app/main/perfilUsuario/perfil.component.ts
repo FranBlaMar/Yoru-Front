@@ -18,6 +18,7 @@ export class PerfilComponent implements OnInit {
   visible: boolean = false;
   publicaciones: Publicacion[] = [];
   like: boolean = false;
+  aboutMe: string = "";
 
   ngOnInit(): void {
     this.obtenerUsuarioLogeado();
@@ -28,6 +29,7 @@ export class PerfilComponent implements OnInit {
     this.servicioAuth.comprobarToken().subscribe({
       next: (resp) => {
         this.user = resp;
+        this.aboutMe = resp.aboutMe;
         this.obtenerPublicaciones();
       },
       error: (err) => {
@@ -60,7 +62,6 @@ export class PerfilComponent implements OnInit {
       next: (resp) => {
         this.publicaciones = resp;
         this.visible = true;
-        console.log(resp)
       },
       error: (err) => {
         Swal.fire({
@@ -79,5 +80,25 @@ export class PerfilComponent implements OnInit {
   //Método para transformar un array de bytes en url base 64
   transformarAImagen(file: Byte[]){
     return 'data:image/png;base64,' + btoa(String.fromCharCode(...new Uint8Array(file))) + file;
+  }
+
+
+  editarUsuario(){
+    this.user.aboutMe = this.aboutMe;
+    this.servicioAuth.editarUsuario(this.user)
+    .subscribe({
+      next: (resp) => {
+      },
+      error: (err) => {
+        Swal.fire({
+          title: 'Error...',
+          text: `${err.error.errorMessage}`,
+          width: 600,
+          padding: '5em',
+          color: '#FFF',
+          background: ' url(./assets/img/fondoError.gif)',
+        })
+      }
+    })
   }
 }

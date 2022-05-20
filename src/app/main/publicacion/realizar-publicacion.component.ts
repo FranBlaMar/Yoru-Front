@@ -1,6 +1,7 @@
 import { Byte } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { PublicacionService } from './services/publicacion.service';
 
 @Component({
@@ -27,9 +28,22 @@ export class RealizarPublicacionComponent implements OnInit {
    subirImagen(){
     let file: File | null = this.imagen.item(0);
     if(file){
-      this.servicio.enviarPublicacion(file,this.titulo).subscribe(
-        (resp) => this.router.navigateByUrl('main/perfil')
-        );
+      this.servicio.enviarPublicacion(file,this.titulo)
+      .subscribe({
+        next: (resp) => {
+          this.router.navigateByUrl('main/perfil')
+        },
+        error: (err) => {
+          Swal.fire({
+            title: 'Error...',
+            text: `La imagen tiene un tamaño o formato no permitido`,
+            width: 600,
+            padding: '5em',
+            color: '#FFF',
+            background: ' url(./assets/img/fondoError.gif)',
+          })
+        }
+      })
     }
   }
 

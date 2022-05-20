@@ -49,6 +49,39 @@ i{
     border-radius:250px;
     align-items: center;
 }
+h5{
+    margin: 1rem;
+}
+.seguir{
+    width: 100px;
+    background-color: transparent;
+    border: 3px solid rgb(255, 174, 0);
+    border-radius: 100px;
+    margin: 2rem;
+
+}
+.seguir p {
+    margin: auto;
+}
+.dejarSeguir p {
+    margin: auto;
+}
+.seguir:hover{
+    background-color: transparent;
+    border: 3px solid rgb(255, 149, 0);
+}
+
+.dejarSeguir{
+    width: 100px;
+    background-color: rgb(107, 201, 0);
+    border: 3px solid rgb(107, 201, 0);
+    border-radius: 100px;
+    margin: 2rem;
+}
+.dejarSeguir:hover{
+    background-color: rgb(107, 190, 0);
+    border: 3px solid rgb(107, 190, 0);
+}
 
 .numeros{
     margin-top: 6%;

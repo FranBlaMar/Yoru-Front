@@ -83,4 +83,12 @@ export class AuthService {
         const url = `${ this.URLBase }/user/${userName}`;
         return this.http.get<userCompleto[]>(url)
     }
+
+    //Método para enviar un usuario a editar al backend
+    editarUsuario(user: userCompleto){
+        const url = `${ this.URLBase }/user`;
+        const headers = new HttpHeaders()
+            .set('Authorization', `Bearer ${localStorage.getItem('jwt')}`  || '' );
+        return this.http.put<userCompleto>( url, user, { headers} ) 
+    }
 }
