@@ -32,7 +32,7 @@ export class MostrarUsuarioBuscadoComponent implements OnInit {
         if(resp[0].email === localStorage.getItem("email")){
           this.esElMismoUsuario = true;
         }
-        this.obtenerPublicaciones(resp[0].email)
+        this.comprobarSiElUsuarioLeSigue();
       })
 
   }
@@ -62,27 +62,6 @@ export class MostrarUsuarioBuscadoComponent implements OnInit {
       error: (err) => {
         this.esSeguido = false
         this.visible = true;
-      }
-    })
-  }
-
-  //Método para obtener las publicaciones del usuario logueado
-  obtenerPublicaciones(user: string){
-    this.servicePublicacion.obtenerPublicacionesDeUsuario(user)
-    .subscribe({
-      next: (resp) => {
-        this.publicaciones = resp;
-        this.comprobarSiElUsuarioLeSigue();
-      },
-      error: (err) => {
-        Swal.fire({
-          title: 'Error...',
-          text: `${err.error.errorMessage}`,
-          width: 600,
-          padding: '5em',
-          color: '#FFF',
-          background: ' url(./assets/img/fondoError.gif)',
-        })
       }
     })
   }

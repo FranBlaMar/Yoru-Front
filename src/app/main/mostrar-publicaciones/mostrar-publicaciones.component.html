@@ -1,0 +1,20 @@
+<div class="d-flex flex-wrap justify-content-around" *ngIf="visible"> 
+    
+    <div class="card" style="width: 18rem;" *ngFor="let publi of publicaciones">
+      <div class="card-head"> 
+        <p  class="text-white"> {{publi.autor.userName}}</p>
+        <p class="small  text-white"> {{publi.fechaPublicacion}}</p>
+        </div>
+      <img src="{{transformarAImagen(publi.imagen)}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <div class="d-flex flex-wrap align-items-center">
+        <p class="card-title  text-white">{{publi.likes}} Likes</p> 
+        <i class="bi bi-heart" *ngIf="!comprobarLike(publi)" (click)="darLike(publi)"></i>
+        <i class="bi bi-heart-fill gustado" *ngIf="comprobarLike(publi)" (click)="quitarLike(publi)"></i>
+        </div>
+        <p class="card-text  text-white">{{publi.titulo}}</p>
+      </div>
+      <hr class="text-white">
+    </div>
+</div>
+

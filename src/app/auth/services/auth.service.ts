@@ -88,7 +88,7 @@ export class AuthService {
     editarUsuario(user: userCompleto){
         const url = `${ this.URLBase }/user`;
         const headers = new HttpHeaders()
-            .set('Authorization', `Bearer ${localStorage.getItem('jwt')}`  || '' );
-        return this.http.put<userCompleto>( url, user, { headers} ) 
+        .set('Authorization', `Bearer ${localStorage.getItem('jwt')}`  || '' );
+        return this.http.put<userCompleto>( url, user, {headers} ) 
     }
 }

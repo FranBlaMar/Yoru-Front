@@ -9,6 +9,7 @@ import { RealizarPublicacionComponent } from './publicacion/realizar-publicacion
 import { PerfilComponent } from './perfilUsuario/perfil.component';
 import { BuscarUsuarioComponent } from './buscar-usuario/buscar-usuario.component';
 import { MostrarUsuarioBuscadoComponent } from './mostrar-usuario-buscado/mostrar-usuario-buscado.component';
+import { MostrarPublicacionesComponent } from './mostrar-publicaciones/mostrar-publicaciones.component';
 
 
 
@@ -18,7 +19,8 @@ import { MostrarUsuarioBuscadoComponent } from './mostrar-usuario-buscado/mostra
     RealizarPublicacionComponent,
     PerfilComponent,
     BuscarUsuarioComponent,
-    MostrarUsuarioBuscadoComponent
+    MostrarUsuarioBuscadoComponent,
+    MostrarPublicacionesComponent
   ],
   imports: [
     CommonModule,

@@ -3,7 +3,7 @@ import { userCompleto } from "./user.interface";
 
 export interface Publicacion{
     titulo: String,
-    id: number,
+    idPublicacion: number,
     imagen: Byte[],
     autor: userCompleto,
     fechaPublicacion: Date,

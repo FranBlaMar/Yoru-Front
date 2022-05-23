@@ -38,8 +38,6 @@ export class BuscarUsuarioComponent implements OnInit {
         if(JSON.parse(localStorage.getItem("historial") || "[]").findIndex((x:any) => x.email === resp[0].email) == -1){
           this.historial.push(resp[0]); 
           this.historialVacio = false;
-          console.log(JSON.parse(localStorage.getItem("historial") || "[]"));
-          console.log(JSON.parse(localStorage.getItem("historial") || "[]").indexOf(resp[0]));
           localStorage.setItem("historial", JSON.stringify(this.historial));
         }
       },

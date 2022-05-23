@@ -27,6 +27,15 @@ export class PublicacionService {
       responseType: 'json' });
   }
 
+  //Método para obtener publicaciones gustadas del usuario logueado
+  obtenerPublicacionesGustadas(){
+     const url = `${this.urlBase}/user/publicacionesGustadas`;
+    const headers = new HttpHeaders()
+    .set('Authorization', `Bearer ${localStorage.getItem('jwt')}`  || '',);
+    return this.http.get<Publicacion[]>(url, {headers});
+  }
+
+
   //Método para realizar la peticion de obtener publicaciones de un usuario
   obtenerPublicacionesDeUsuario(usuario: String){
     const url = `${this.urlBase}/publicaciones/${usuario}`;
@@ -35,6 +44,23 @@ export class PublicacionService {
     return this.http.get<Publicacion[]>(url, {headers});
   }
 
+  //Método para realizar la petición para dar like a una publicación
+  darLikeaPublicacion(publi: Publicacion){
+    const url = `${this.urlBase}/user/publicacionesGustadas`;
+    const headers = new HttpHeaders()
+    .set('Authorization', `Bearer ${localStorage.getItem('jwt')}`  || '',);
+    const formData: FormData = new FormData();
+    formData.append('publicacion', publi.idPublicacion.toString());
+    return this.http.post<Publicacion[]>(url, formData,{headers});
+  }
+
+  //Método para realizar la petición para quitar el like a una publicación
+  quitarLikeaPublicacion(publi: Publicacion){
+    const url = `${this.urlBase}/user/publicacionesGustadas/${publi.idPublicacion.toString()}`;
+    const headers = new HttpHeaders()
+    .set('Authorization', `Bearer ${localStorage.getItem('jwt')}`  || '',);
+    return this.http.delete<Publicacion[]>(url,{headers});
+  }
 
 
 }

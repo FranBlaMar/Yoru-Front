@@ -15,7 +15,6 @@ export class MostrarOtrosUsuariosService {
   //Método para comprobar si un usuario es seguido por el usuario logueado
   comprobarSiYaSigueAlUsuario(user: userCompleto){
     const url = `${this.urlBase}/user/follower/${user.email}`;
-    console.log(user);
     const headers = new HttpHeaders()
     .set('Authorization', `Bearer ${localStorage.getItem('jwt')}`  || '',);
     return this.http.get<userCompleto>(url,{headers});
