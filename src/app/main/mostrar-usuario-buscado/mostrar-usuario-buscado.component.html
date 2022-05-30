@@ -19,13 +19,15 @@
       <p class="text-center numeros">{{user.numeroSeguidos}}  Seguidos</p> 
 
     </section>
-    <div>
-      <h5 class="card-title">{{user.userName}}</h5>
+    <div class="w-100 d-flex flex-wrap m-auto">
+      <h5 class="card-title nombreUser m-auto">@{{user.userName}}</h5>
 
-      <p class="card-text">{{user.aboutMe}}</p>
+      <div class="d-flex flex-wrap m-auto">
+        <p class="card-text text-center m-auto">{{user.aboutMe}}</p>
+        <div *ngIf="!esElMismoUsuario && !esSeguido"> <button class="d-flex flex-wrap text-center seguir" (click) = "seguir()"><p>Seguir</p></button></div>
+        <div *ngIf="!esElMismoUsuario && esSeguido"> <button class="d-flex flex-wrap text-center dejarSeguir" (click) ="dejarDeSeguir()"><p>No Seguir</p></button></div>  
+      </div>
     </div>
-    <div *ngIf="!esElMismoUsuario && !esSeguido"> <button class="d-flex flex-wrap text-center seguir" (click) = "seguir()"><p>+ Seguir</p></button></div>
-    <div *ngIf="!esElMismoUsuario && esSeguido"> <button class="d-flex flex-wrap text-center dejarSeguir" (click) ="dejarDeSeguir()"><p>No seguir</p></button></div>
 
   </div>
 <hr>

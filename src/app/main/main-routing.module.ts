@@ -3,12 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { Guardian } from '.././guardian.service';
 import { BuscarUsuarioComponent } from './buscar-usuario/buscar-usuario.component';
 import { MostrarUsuarioBuscadoComponent } from './mostrar-usuario-buscado/mostrar-usuario-buscado.component';
+import { PaginaPrincipalComponent } from './pagina-principal/pagina-principal.component';
 import { PerfilComponent } from './perfilUsuario/perfil.component';
 import { RealizarPublicacionComponent } from './publicacion/realizar-publicacion.component';
 
 
 const routes: Routes = [
-
+  {
+    path: 'principal', component: PaginaPrincipalComponent,canActivate: [Guardian]
+  },
   {
     path: 'perfil', component: PerfilComponent,canActivate: [Guardian]
   },

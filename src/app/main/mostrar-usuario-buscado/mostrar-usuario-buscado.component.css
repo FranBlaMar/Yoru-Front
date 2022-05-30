@@ -1,6 +1,6 @@
 
 .datosUser{
-    background-color: transparent;
+    background-color: rgba(255, 255, 255, 0.25);
     max-width: 75%;
     margin: auto;
     margin-top: 2rem;
@@ -44,7 +44,9 @@ hr{
 .card-body{
     padding: 0px;
 }
-
+.nombreUser{
+    margin-left: 4rem;
+}
 
 i{
     margin-left: 50%;
@@ -61,6 +63,11 @@ i{
     border-radius:250px;
     align-items: center;
 }
+
+.numeros{
+    margin-top: 6%;
+}
+
 h5{
     margin: 1rem;
 }
@@ -68,7 +75,6 @@ h5{
     width: 100px;
     background-color: transparent;
     border: 3px solid rgb(255, 174, 0);
-    border-radius: 100px;
     margin: 2rem;
 
 }
@@ -87,9 +93,9 @@ h5{
     width: 100px;
     background-color: rgb(107, 201, 0);
     border: 3px solid rgb(107, 201, 0);
-    border-radius: 100px;
     margin: 2rem;
 }
+
 .dejarSeguir:hover{
     background-color: rgb(107, 190, 0);
     border: 3px solid rgb(107, 190, 0);

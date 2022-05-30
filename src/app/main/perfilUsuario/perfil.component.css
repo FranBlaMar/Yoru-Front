@@ -1,12 +1,10 @@
 
 .datosUser{
-    background-color: transparent;
+    background-color: rgba(255, 255, 255, 0.25);
     max-width: 75%;
     margin: auto;
     margin-top: 2rem;
     backdrop-filter: blur(150px);
-
-
 }
 .fotoPerfil{
     min-width: 25%;
@@ -45,7 +43,9 @@ hr{
     padding: 0px;
 }
 
-
+.nombreUser{
+    margin-left: 4rem;
+}
 i{
     margin-left: 50%;
     font-size: 1.5rem;

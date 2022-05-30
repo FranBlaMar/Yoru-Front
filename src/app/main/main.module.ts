@@ -10,6 +10,7 @@ import { PerfilComponent } from './perfilUsuario/perfil.component';
 import { BuscarUsuarioComponent } from './buscar-usuario/buscar-usuario.component';
 import { MostrarUsuarioBuscadoComponent } from './mostrar-usuario-buscado/mostrar-usuario-buscado.component';
 import { MostrarPublicacionesComponent } from './mostrar-publicaciones/mostrar-publicaciones.component';
+import { PaginaPrincipalComponent } from './pagina-principal/pagina-principal.component';
 
 
 
@@ -20,7 +21,8 @@ import { MostrarPublicacionesComponent } from './mostrar-publicaciones/mostrar-p
     PerfilComponent,
     BuscarUsuarioComponent,
     MostrarUsuarioBuscadoComponent,
-    MostrarPublicacionesComponent
+    MostrarPublicacionesComponent,
+    PaginaPrincipalComponent
   ],
   imports: [
     CommonModule,

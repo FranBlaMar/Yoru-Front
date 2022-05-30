@@ -13,10 +13,27 @@ a{
 }
 
 .active{
-	color: rgb(255, 255, 255);
+	border-bottom:3px solid rgb(255, 255, 255);
+    color: rgb(255,255,255);
+}
+.navbar{
+    background-color: transparent;
+}
+
+.iconoPerfil{
+    max-width: 2.7rem;
+    max-height: 2.7rem;
+    min-height: 2.7rem;
+    min-width: 2.7rem;
+    border: 2px solid rgb(0,0,0);
+    border-radius: 100px;
+
+}
+a:hover{
+    color: rgb(255, 255, 255);
     text-shadow:
-        0 0 7px rgb(231, 116, 108),
-        0 0 10px rgb(146, 44, 44),
+    0 0 7px rgb(0, 243, 32),
+    0 0 10px rgb(60, 255, 0),
         0 0 21px rgb(231, 87, 87),
         0 0 42px rgb(174, 0, 255),
         0 0 82px rgba(194, 77, 69, 0.973),
@@ -24,14 +41,12 @@ a{
         0 0 102px rgb(243, 81, 81),
         0 0 151px rgb(228, 40, 15);
 }
-.navbar{
-    background-color: transparent;
-}
-a:hover{
+
+.iconoPerfil:hover{
     color: rgb(255, 255, 255);
     text-shadow:
-        0 0 7px rgb(231, 116, 108),
-        0 0 10px rgb(146, 44, 44),
+        0 0 7px rgb(0, 243, 32),
+        0 0 10px rgb(60, 255, 0),
         0 0 21px rgb(231, 87, 87),
         0 0 42px rgb(174, 0, 255),
         0 0 82px rgba(194, 77, 69, 0.973),

@@ -1,4 +1,5 @@
 import { Byte } from "@angular/compiler/src/util";
+import { Comentario } from "./comentario.interface";
 import { userCompleto } from "./user.interface";
 
 export interface Publicacion{
@@ -8,5 +9,5 @@ export interface Publicacion{
     autor: userCompleto,
     fechaPublicacion: Date,
     likes: number,
-    liked: boolean
+    comentarios: Comentario[]
 }

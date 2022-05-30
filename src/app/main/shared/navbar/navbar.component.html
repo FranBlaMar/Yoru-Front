@@ -1,16 +1,16 @@
-<nav class="navbar py-3 row">
+<nav class="navbar py-3 row" *ngIf="visible">
     <div class="navbar-brand m-auto d-lg-block d-none col-1">
         <img class="logo m-auto" src="./assets/img/Logo.png" alt="Logo de yoru">
     </div>
   
     <div class="m-auto d-flex flex-wrap justify-content-around col-lg-7 col-sm-12">
-        <a class="h5 nav-link  font-weight-bold" [routerLink]="['/casa']" routerLinkActive="active" data-bs-target="#navbar"><i class="bi bi-house"></i></a>
+        <a class="h5 nav-link  font-weight-bold" [routerLink]="['principal']" routerLinkActive="active" data-bs-target="#navbar"><i class="bi bi-house"></i></a>
 
         <a class="h5 nav-link font-weight-bold" [routerLink]="['publicacion']" routerLinkActive="active" data-bs-target="#navbar" ><i class="bi bi-plus-circle"></i></a>
 
         <a class="h5 nav-link  font-weight-bold" [routerLink]="['usuario']" routerLinkActive="active" data-bs-target="#navbar"><i class="bi bi-search"></i></a>
 
-        <a class="h5 nav-link font-weight-bold" [routerLink]="['perfil']" routerLinkActive="active" data-bs-target="#navbar"><i class="bi bi-person-circle"></i></a>
+        <a class="h5 nav-link font-weight-bold" [routerLink]="['perfil']" routerLinkActive="active" data-bs-target="#navbar"><img *ngIf="user.fotoPerfil" class="iconoPerfil" src="{{transformarAImagen(user.fotoPerfil)}}"><img class="iconoPerfil" *ngIf="!user.fotoPerfil" src="../../../../assets/img/user.png"></a>
 
         <a class="h5 nav-link font-weight-bold" (click)="cerrarSesion()" routerLinkActive="active" data-bs-target="#navbar"><i class="bi bi-door-closed"></i></a>
     </div>

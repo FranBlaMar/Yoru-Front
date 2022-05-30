@@ -1,5 +1,7 @@
 import { Byte } from '@angular/compiler/src/util';
 import { Component, Input, OnInit } from '@angular/core';
+import { map } from 'rxjs';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { Publicacion } from 'src/app/interfaces/publicacion.interface';
 import { userCompleto } from 'src/app/interfaces/user.interface';
 import Swal from 'sweetalert2';
@@ -12,18 +14,22 @@ import { PublicacionService } from '../publicacion/services/publicacion.service'
 })
 export class MostrarPublicacionesComponent implements OnInit {
 
-  constructor( private servicioPubli: PublicacionService) { }
-  user!: userCompleto;
+  constructor( private servicioPubli: PublicacionService, private servicioUser: AuthService) { }
   publicaciones: Publicacion[] = [];
   visible: boolean = false;
   publicacionesGustadas: Publicacion[] = [];
-
+  mensajeComentario: string = "";
   @Input() usuario!: userCompleto;
+  longitudComentario: number = this.mensajeComentario.length;
 
   ngOnInit(): void {
     this.obtenerPublicaciones();
   }
 
+  //Método para comprobar que la longitud del comentario es mayor a 0 y menor que 30
+  comprobarLongitud(){
+    this.longitudComentario = this.mensajeComentario.length;
+  }
 
    //Método para obtener las publicaciones del usuario deseado
    obtenerPublicaciones(){
@@ -69,11 +75,41 @@ export class MostrarPublicacionesComponent implements OnInit {
     return result;
   }
 
+
+  //Método para añadir un comentario
+  publicarComentario(publi: Publicacion,){
+    this.servicioPubli.añadirComentario(publi,this.mensajeComentario)
+    .subscribe(
+      (resp) => {this.ngOnInit(), this.mensajeComentario = "", this.longitudComentario = 0}
+    )
+  }
+
+  //Método para borrar una publicación
+  borrarPublicacion(publi: Publicacion){
+    this.servicioPubli.borrarPublicacion(publi)
+    .subscribe(
+      (resp) => {
+        this.publicaciones.splice(this.publicaciones.indexOf(publi), 1), 
+        this.usuario.numeroPublicaciones --}
+    )
+  }
+
+  //Método para comprobar si la publicacion mostrada pertenece al usuario logueado
+  comprobarSiLaPublicacionEsDelUsuarioLogueado(publi: Publicacion){
+    if(localStorage.getItem("email") == publi.autor.email){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
   //Método para darle like a una publicación
   darLike(publi: Publicacion){
     this.servicioPubli.darLikeaPublicacion(publi)
     .subscribe( (resp) => this.ngOnInit())
   }
+
 
   //Método para quitarle el like a una publicación
   quitarLike(publi: Publicacion){

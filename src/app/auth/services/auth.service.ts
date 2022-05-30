@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Publicacion } from 'src/app/interfaces/publicacion.interface';
 import { RespuestaAuth } from 'src/app/interfaces/token.interface';
 import { userCompleto, userLogin } from 'src/app/interfaces/user.interface';
 import { environment } from 'src/environments/environment.prod';
@@ -90,5 +91,14 @@ export class AuthService {
         const headers = new HttpHeaders()
         .set('Authorization', `Bearer ${localStorage.getItem('jwt')}`  || '' );
         return this.http.put<userCompleto>( url, user, {headers} ) 
+    }
+
+
+    //Método para obtener las publicaciones de los seguidos del usuario logueado
+    obtenerPublicacionesSeguidos(){
+        const url = `${ this.URLBase }/user/follower/publicacion`;
+        const headers = new HttpHeaders()
+        .set('Authorization', `Bearer ${localStorage.getItem('jwt')}`  || '' );
+        return this.http.get<Publicacion[]>( url, {headers} ) 
     }
 }

@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Comentario } from 'src/app/interfaces/comentario.interface';
 import { Publicacion } from 'src/app/interfaces/publicacion.interface';
 
 import { environment } from 'src/environments/environment';
@@ -38,7 +39,7 @@ export class PublicacionService {
 
   //Método para realizar la peticion de obtener publicaciones de un usuario
   obtenerPublicacionesDeUsuario(usuario: String){
-    const url = `${this.urlBase}/publicaciones/${usuario}`;
+    const url = `${this.urlBase}/publicacion/${usuario}`;
     const headers = new HttpHeaders()
     .set('Authorization', `Bearer ${localStorage.getItem('jwt')}`  || '',);
     return this.http.get<Publicacion[]>(url, {headers});
@@ -62,5 +63,30 @@ export class PublicacionService {
     return this.http.delete<Publicacion[]>(url,{headers});
   }
 
+  //Método para borrar una publicación
+  borrarPublicacion(publi :Publicacion){
+    const url = `${this.urlBase}/publicacion/${publi.idPublicacion.toString()}`;
+    const headers = new HttpHeaders()
+    .set('Authorization', `Bearer ${localStorage.getItem('jwt')}`  || '',);
+    return this.http.delete<Publicacion>(url,{headers});
+  }
 
+  //Método para añadir un comentario a una publicación
+  añadirComentario(publi:Publicacion, comentario: string){
+    const url = `${this.urlBase}/publicacion/${publi.idPublicacion.toString()}/comentario`;
+    const formData: FormData = new FormData();
+    formData.append('comentario', comentario);
+    const headers = new HttpHeaders()
+    .set('Authorization', `Bearer ${localStorage.getItem('jwt')}`  || '',);
+    return this.http.post<Comentario>(url,formData,{headers});
+  }
+
+  //Método para obtener comentarios de una publicacion
+  obtenerComentarios(publi: Publicacion){
+    const url = `${this.urlBase}/publicacion/${publi.idPublicacion.toString()}/comentario`;
+    const headers = new HttpHeaders()
+    .set('Authorization', `Bearer ${localStorage.getItem('jwt')}`  || '',);
+    return this.http.get<Comentario>(url,{headers});
+  }
+  
 }
