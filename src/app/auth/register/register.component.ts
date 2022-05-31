@@ -15,13 +15,14 @@ import { AuthService } from '../services/auth.service';
 export class RegisterComponent implements OnInit {
 
   imagen!: FileList;
+  imageURL: String = "../../../assets/img/user2.png";
 
   formularioRegistro: FormGroup = this.builder.group({
     userName: [ '', [ Validators.required, Validators.minLength(3) ],  [this.comprobarNombreUsuario()]],
     password: ['',[Validators.required, Validators.minLength(8), Validators.pattern('(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=[^0-9]*[0-9]).{8,}')]],
     repetirPassword: ['', [Validators.required, this.validarContraseña ]],
     email: [this.servicio.getCorreo()],
-    fotoPerfil: [this.imagen, []]
+    fotoPerfil: [this.imagen, [Validators.required]]
   },{
     validators: [this.validarContraseña('password','repetirPassword')]
   });
@@ -30,6 +31,10 @@ export class RegisterComponent implements OnInit {
   //Método para obtene runa imagen de un file input
   obtenerFile(event: any): void {
     this.imagen = event.target.files;
+    const reader = new FileReader();
+    reader.onload = () => 
+      this.imageURL = reader.result as string;
+      reader.readAsDataURL(this.imagen[0])
   }
 
   constructor(private builder: FormBuilder, private servicio: AuthService, private route: Router) { }
@@ -61,7 +66,7 @@ export class RegisterComponent implements OnInit {
 
       return this.servicio.comprobarNombreUsuario(userName)
       .pipe(
-        map( res => {return res != null ? { existente: true } : null}
+        map( res => {return res.length != 0 ? { existente: true } : null}
       )
       )
     }

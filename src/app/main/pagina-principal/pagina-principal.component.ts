@@ -17,7 +17,8 @@ export class PaginaPrincipalComponent implements OnInit {
   publicacionesGustadas: Publicacion[] = [];
   mensajeComentario: string = "";
   longitudComentario: number = this.mensajeComentario.length;
-
+  hayPublicaciones: number = 1;
+  
   ngOnInit(): void {
     this.servicioUser.obtenerPublicacionesSeguidos()
     .subscribe(
@@ -36,8 +37,14 @@ export class PaginaPrincipalComponent implements OnInit {
       this.servicioPubli.obtenerPublicacionesGustadas()
       .subscribe({
         next: (resp) => {
-          this.publicacionesGustadas = resp;
-          this.visible = true;
+          if(resp.length == 0){
+            this.hayPublicaciones = 0;
+            this.visible = true;
+          }
+          else{
+            this.publicacionesGustadas = resp;
+            this.visible = true;
+          }
         },
         error: (err) => {
           this.visible = true;

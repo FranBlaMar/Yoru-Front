@@ -8,6 +8,10 @@
 
 
 }
+
+.carga{
+    width: 150px;
+}
 .borrar{
     float: right;
     cursor: pointer;
@@ -64,7 +68,7 @@ p{
 
 }
 
-h5{
+h5, h2{
     margin: 1rem;
     color: rgb(0, 0, 0);
 }

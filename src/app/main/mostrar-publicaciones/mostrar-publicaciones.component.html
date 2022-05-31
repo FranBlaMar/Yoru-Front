@@ -1,3 +1,10 @@
+<div class="text-center mt-5" *ngIf="!visible">
+  <img src="../../../assets/img/loading.gif" class="carga">
+</div>
+<div class="text-center" *ngIf="hayPublicaciones == 0">
+  <h2> No hay publicaciones</h2>
+</div>
+
 <div class="d-flex flex-wrap justify-content-around" *ngIf="visible"> 
     
     <div class="card" style="width: 20rem;" *ngFor="let publi of publicaciones">

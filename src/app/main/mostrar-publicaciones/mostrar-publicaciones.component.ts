@@ -21,6 +21,7 @@ export class MostrarPublicacionesComponent implements OnInit {
   mensajeComentario: string = "";
   @Input() usuario!: userCompleto;
   longitudComentario: number = this.mensajeComentario.length;
+  hayPublicaciones: number = 2;
 
   ngOnInit(): void {
     this.obtenerPublicaciones();
@@ -36,8 +37,15 @@ export class MostrarPublicacionesComponent implements OnInit {
     this.servicioPubli.obtenerPublicacionesDeUsuario(this.usuario.email)
     .subscribe({
       next: (resp) => {
-        this.publicaciones = resp;
-        this.obtenerPublicacionesGustadasUserlogueado();
+        if(resp.length == 0){
+          this.hayPublicaciones = 0;
+          this.visible = true;
+        }
+        else{
+          this.hayPublicaciones = 1;
+          this.publicaciones = resp;
+          this.obtenerPublicacionesGustadasUserlogueado();
+        }
       },
       error: (err) => {
         Swal.fire({

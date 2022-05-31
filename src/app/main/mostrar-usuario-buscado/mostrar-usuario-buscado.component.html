@@ -7,25 +7,33 @@
       <div class="">
         <img *ngIf="user.fotoPerfil" class="img" src="{{transformarAImagen(user.fotoPerfil)}}">
         <img *ngIf="!user.fotoPerfil" class="img" src="../../../assets/img/user.png">
+        <h5 class="card-title nombreUser m-auto">@{{user.userName}}</h5>
       </div>
+      <hr class="d-lg-none d-xs-block">
     </div>
 
-    <section class="infoPerfil d-flex justify-content-around flex-wrap">
+    <section class="infoPerfil d-flex justify-content-around flex-wrap m-auto">
 
-      <p class="text-center numeros">{{user.numeroPublicaciones}} Publicaciones</p> 
+      <p class="text-center numeros m-auto">{{user.numeroPublicaciones}} Publicaciones</p> 
 
-      <p class="text-center numeros">{{user.numeroSeguidores}}  Seguidores</p> 
+      <p class="text-center numeros m-auto">{{user.numeroSeguidores}}  Seguidores</p> 
 
-      <p class="text-center numeros">{{user.numeroSeguidos}}  Seguidos</p> 
+      <p class="text-center numeros m-auto">{{user.numeroSeguidos}}  Seguidos</p> 
 
     </section>
     <div class="w-100 d-flex flex-wrap m-auto">
-      <h5 class="card-title nombreUser m-auto">@{{user.userName}}</h5>
+      
 
-      <div class="d-flex flex-wrap m-auto">
-        <p class="card-text text-center m-auto">{{user.aboutMe}}</p>
-        <div *ngIf="!esElMismoUsuario && !esSeguido"> <button class="d-flex flex-wrap text-center seguir" (click) = "seguir()"><p>Seguir</p></button></div>
-        <div *ngIf="!esElMismoUsuario && esSeguido"> <button class="d-flex flex-wrap text-center dejarSeguir" (click) ="dejarDeSeguir()"><p>No Seguir</p></button></div>  
+      <p class="card-text text-center m-auto aboutMe  mt-3">{{user.aboutMe}}</p>
+      <div class="text-center m-auto mt-3">
+        <div class="form-check form-switch m-auto text-center" *ngIf="!esElMismoUsuario && !esSeguido">
+          <input class="form-check-input" (click) = "seguir()" type="checkbox" id="flexSwitchCheckDefault">
+          <label class="form-check-label m-auto" for="flexSwitchCheck">Seguir</label>
+        </div>
+        <div class="form-check form-switch m-auto text-center" *ngIf="!esElMismoUsuario && esSeguido" >
+          <input class="form-check-input" (click) ="dejarDeSeguir()" type="checkbox" id="flexSwitchCheckChecked" checked>
+          <label class="form-check-label m-auto" for="flexSwitchCheckChecked">Seguir</label>
+        </div>
       </div>
     </div>
 

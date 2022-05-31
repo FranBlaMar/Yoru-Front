@@ -1,16 +1,16 @@
-<div class="fondo col-10 col-lg-8 m-auto text-center mt-2">
+<div class="fondo col-10 col-lg-8 m-auto text-center mt-2 ">
     <br>
-    <div class="control col-sm-5 col-lg-9 has-icons-right text-center m-auto">
+    <div class="control col-sm-5 col-lg-6 has-icons-right text-center m-auto">
         <input class="input m-auto form-control form-control-lg text-center " type="text" placeholder="Introduzca un nombre..." name="busqueda"  [(ngModel)]="busqueda" (change) ="buscarUsuario()">
         <span class="icon is-small is-right">
             <i class="bi bi-search"></i>
         </span>
     </div>
     <br>
-    <h3 *ngIf="historialVacio" class="text-white"> No hay historial de busqueda </h3>
+    <h3 *ngIf="historialVacio" class="text-white"> No hay búsquedas recientes </h3>
     
     <div *ngIf="!historialVacio && !resultados">
-        <h4 class="text-white mt-4"> Historial de busqueda...</h4>
+        <h4 class="text-white mt-4"> Búsquedas recientes...</h4>
         <div *ngFor="let usuario of historial">
             <div class="usuario d-flex flex-wrap col-10 col-lg-8 m-auto mt-3">
                 <div class="">

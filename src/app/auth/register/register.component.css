@@ -11,7 +11,22 @@ a{
 .col-sm-9{
     margin: auto;
 }
-
+.img-upload > input
+{
+    display: none;
+}
+.img{
+    margin: 2rem;
+    max-width: 7rem;
+    max-height: 7rem;
+    min-width: 7rem;
+    min-height: 7rem;
+    justify-content: center;
+    border: 2px solid #000;
+    border-radius:250px;
+    align-items: center;
+    cursor: pointer;
+}
 .icon{
     margin-right: 15px;
   

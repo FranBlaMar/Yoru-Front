@@ -123,6 +123,7 @@ hr{
 .noGustado:hover{
     color: rgb(255, 0, 0);
 }
+
 .img{
     margin: 2rem;
     max-width: 7rem;
@@ -155,4 +156,8 @@ hr{
     min-height: 2rem;
     border-radius:100px;
     cursor: pointer;
+}
+
+.carga{
+    width: 150px;
 }

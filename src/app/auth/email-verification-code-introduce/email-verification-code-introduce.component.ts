@@ -13,7 +13,7 @@ export class EmailVerificationCodeIntroduceComponent implements OnInit {
   email: string = "";
   constructor(private servicio: AuthService, private route: Router) { }
 
-  codigoVerificacionIntroducido: number = 0;
+  codigoVerificacionIntroducido!: number;
   codigoVerificacionReal: number = this.servicio.getCodigoVerificacion();
   ngOnInit(): void {
     this.email = this.servicio.getCorreo();

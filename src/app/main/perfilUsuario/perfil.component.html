@@ -7,25 +7,26 @@
       <div class="">
         <img *ngIf="user.fotoPerfil" class="img" src="{{transformarAImagen(user.fotoPerfil)}}">
         <img *ngIf="!user.fotoPerfil" class="img" src="../../../assets/img/user.png">
+        <h5 class="card-title nombreUser m-auto">@{{user.userName}}</h5>
       </div>
+      <hr class="d-lg-none d-xs-block">
     </div>
 
-    <section class="infoPerfil d-flex justify-content-around flex-wrap">
+    <section class="infoPerfil d-flex justify-content-around flex-wrap m-auto">
 
-      <p class="text-center numeros">{{user.numeroPublicaciones}} Publicaciones</p> 
+      <p class="text-center numeros m-auto">{{user.numeroPublicaciones}} Publicaciones</p> 
 
-      <p class="text-center numeros">{{user.numeroSeguidores}}  Seguidores</p> 
+      <p class="text-center numeros m-auto">{{user.numeroSeguidores}}  Seguidores</p> 
 
-      <p class="text-center numeros">{{user.numeroSeguidos}}  Seguidos</p> 
+      <p class="text-center numeros m-auto">{{user.numeroSeguidos}}  Seguidos</p> 
 
     </section>
-    <div class="w-100">
-      <h5 class="card-title nombreUser">@{{user.userName}}</h5>
 
+    <div class="w-100">
       <p class="card-text text-center ">{{user.aboutMe}} <a class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#modalAboutMe"></a></p>
     </div>
   </div>
-<hr>
+  <hr>
   <app-mostrar-publicaciones *ngIf="visible" [usuario]= "user" ></app-mostrar-publicaciones>
 </div>
 <div class="modal fade" id="modalAboutMe" tabindex="-1" aria-labelledby="modalAboutMe" aria-hidden="true">

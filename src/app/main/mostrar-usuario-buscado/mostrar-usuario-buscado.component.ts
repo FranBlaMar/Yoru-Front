@@ -56,12 +56,16 @@ export class MostrarUsuarioBuscadoComponent implements OnInit {
     this.servicioMostrarotroUser.comprobarSiYaSigueAlUsuario(this.user)
     .subscribe({
       next: (resp) => {
+        if (resp != null){
         this.esSeguido = true
         this.visible = true;
-      },
-      error: (err) => {
+      }else{
         this.esSeguido = false
         this.visible = true;
+      }
+      },
+      error: (err) => {
+        
       }
     })
   }

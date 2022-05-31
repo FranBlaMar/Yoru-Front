@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
         this.route.navigateByUrl("main") 
       },
       error: (err) => {
+        console.error()
         Swal.fire({
           title: 'Error...',
           text: `${err.error.errorMessage}`,

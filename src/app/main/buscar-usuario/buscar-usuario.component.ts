@@ -33,18 +33,39 @@ export class BuscarUsuarioComponent implements OnInit {
     this.servicio.comprobarNombreUsuario(this.busqueda)
     .subscribe({
       next: (resp) => {
-        this.resultados = resp;
-
-        if(JSON.parse(localStorage.getItem("historial") || "[]").findIndex((x:any) => x.email === resp[0].email) == -1){
-          this.historial.push(resp[0]); 
-          this.historialVacio = false;
-          localStorage.setItem("historial", JSON.stringify(this.historial));
+        if(resp.length == 0){
+          Swal.fire({
+            title: 'Error...',
+            text: `No existe ningún usuario con ese nombre`,
+            width: 600,
+            padding: '5em',
+            color: '#FFF',
+            background: ' url(./assets/img/fondoError.gif)',
+          })
         }
+        else{
+          this.resultados = resp;
+          if(JSON.parse(localStorage.getItem("historial") || "[]").findIndex((x:any) => x.email === resp[0].email) == -1){
+            if(JSON.parse(localStorage.getItem("historial") || "[]").length == 4){
+              this.historial.shift();
+              this.historial.push(resp[0]); 
+              this.historialVacio = false;
+              localStorage.setItem("historial", JSON.stringify(this.historial));
+            }
+            else{
+              this.historial.push(resp[0]); 
+              this.historialVacio = false;
+              localStorage.setItem("historial", JSON.stringify(this.historial));
+            }
+          }
+        }
+
+
       },
       error: (err) => {
         Swal.fire({
           title: 'Error...',
-          text: `No existe ningún usuario con ese nombre`,
+          text: `${err.error.errorMessage}`,
           width: 600,
           padding: '5em',
           color: '#FFF',

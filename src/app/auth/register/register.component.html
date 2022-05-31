@@ -11,8 +11,18 @@
                         <div class="col-md-6 col-lg-7 d-flex align-items-center">
                             <div class="card-body p-4 ">
 
-                                <form class="form" [formGroup]="formularioRegistro">    
+                                <form class="form" (ngSubmit)="register()" [formGroup]="formularioRegistro">    
                                     <h4 class="mb-3 pb-3"><strong>Registro</strong></h4>
+                                    <div class="form-outline mb-3 row">
+                                        <div class="col-sm-9 img-upload">
+                                            <label for="input">
+                                                <p>Selecciona tu foto de perfil: </p>
+                                                <img src={{imageURL}} type="file" class="m-auto img"placeholder = "Selecciona tu foto de perfil"/>
+                                            </label >
+                                            <input type="file" id="input"  (change) ="obtenerFile($event)" formControlName="fotoPerfil" name="fotoPerfil">
+                                        </div>
+                                    </div>
+
                                     <div class="form-outline mb-3 row">
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control form-control-lg" formControlName="email" name="email" readonly/>
@@ -38,19 +48,16 @@
                                           <span class="form-text text-danger" *ngIf="formularioRegistro.controls['repetirPassword'].errors && formularioRegistro.controls['repetirPassword'].touched">Las contraseñas no coinciden </span>
                                       </div>
                                     </div>
-                                    <div class="form-outline mb-3 row">
-                                        <div class="col-sm-9">
-                                          <input type="file" class="form-control form-control-lg" name="fotoPerfil" (change) ="obtenerFile($event)" placeholder = "Selecciona tu foto de perfil"  formControlName="fotoPerfil"/>
-                                      </div>
-                                    </div>
+
                                     <div class="pt-1 mb-4">
-                                        <button class="btn btn-dark btn-lg btn-block" [disabled]="formularioRegistro.invalid" (click)="register()" type="button">Registrarse</button>
+                                        <input class=" btn btn-dark btn-lg btn-block" [disabled]="formularioRegistro.invalid" type="submit" value="Registrarse">
                                     </div>
                                     <p class="5 pb-lg-2">¿Ya tienes una cuenta?  <a [routerLink]="['']"> Inicia sesión aquí</a></p>
 
                                 </form>
                             </div>
                         </div>
+                        
                         <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade col-md-6 col-lg-5 d-none d-sm-block" data-bs-ride="carousel" data-bs-interval="3000">
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
