@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
 import { MainComponent } from './main.component';
 import { RouterModule } from '@angular/router';
@@ -11,7 +11,6 @@ import { BuscarUsuarioComponent } from './buscar-usuario/buscar-usuario.componen
 import { MostrarUsuarioBuscadoComponent } from './mostrar-usuario-buscado/mostrar-usuario-buscado.component';
 import { MostrarPublicacionesComponent } from './mostrar-publicaciones/mostrar-publicaciones.component';
 import { PaginaPrincipalComponent } from './pagina-principal/pagina-principal.component';
-
 
 
 @NgModule({
@@ -28,6 +27,7 @@ import { PaginaPrincipalComponent } from './pagina-principal/pagina-principal.co
     CommonModule,
     FormsModule,
     MainRoutingModule,
+    ReactiveFormsModule,
     SharedModule,
     RouterModule
   ]

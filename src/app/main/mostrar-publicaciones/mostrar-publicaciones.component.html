@@ -29,19 +29,19 @@
       </div>
       <hr class="text-white">
       <div class="flex-wrap d-flex">
-        <input type="text" class="anadirComentario text-white" [(ngModel)] ="mensajeComentario" (ngModelChange) ="comprobarLongitud()" placeholder="Añadir Comentario...">
-        <i class="bi bi-cursor enviar" *ngIf="longitudComentario <= 30 && longitudComentario > 0" (click) ="publicarComentario(publi)"></i>
-        <i class="bi bi-cursor enviarDesactivado" *ngIf="longitudComentario > 30 || longitudComentario <= 0"></i>
-        <span class="contadorVerde" *ngIf="longitudComentario <= 30 && longitudComentario > 0"> {{longitudComentario}}/30</span>
-        <span class="contadorRojo" *ngIf="longitudComentario > 30 || longitudComentario <= 0"> {{longitudComentario}}/30</span>
+        <form id="comentario" #comentario = "ngForm">
+          <input type="text" ngModel class="anadirComentario text-white" id="comentario" name="comentario" placeholder="Añadir Comentario...">
+          <i class="bi bi-cursor enviar" (click) ="publicarComentario(publi,comentario.value.comentario)"></i>
+          
+        </form>
       </div>
       <hr class="text-white">
       <div class="scroll ">
-        <div class="d-flex mb-0"  *ngFor="let coment of publi.comentarios">
-          <img *ngIf="coment.autor.fotoPerfil" routerLink="/main/usuario/{{coment.autor.userName}}" class="perfilComentario my-auto" src="{{transformarAImagen(coment.autor.fotoPerfil)}}">
-          <img *ngIf="!coment.autor.fotoPerfil" [routerLink]="[coment.autor.userName]" class="perfilComentario my-auto" src="../../../assets/img/user.png">
-          <p class="autorComent">{{coment.autor.userName}}:  </p>
-          <p class="comentario">{{coment.cuerpoComentario}}</p>
+        <div class="d-flex mb-2"  *ngFor="let coment of publi.comentarios">
+          <img *ngIf="coment.autor.fotoPerfil" routerLink="/main/usuario/{{coment.autor.userName}}" class="perfilComentario mx-auto" src="{{transformarAImagen(coment.autor.fotoPerfil)}}">
+          <img *ngIf="!coment.autor.fotoPerfil" [routerLink]="[coment.autor.userName]" class="perfilComentario mx-auto" src="../../../assets/img/user.png">
+          <p class="autorComent mx-auto">{{coment.autor.userName}}:  </p>
+          <p class="comentario mx-auto">{{coment.cuerpoComentario}}</p>
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
 import { EmailVerificationCodeIntroduceComponent } from './email-verification-code-introduce/email-verification-code-introduce.component';
-
+import {PasswordModule} from 'primeng/password';
 
 
 @NgModule({
@@ -24,7 +24,8 @@ import { EmailVerificationCodeIntroduceComponent } from './email-verification-co
     AuthRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    PasswordModule
   ]
 })
 export class AuthModule { }

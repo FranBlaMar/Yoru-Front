@@ -1,6 +1,7 @@
 import { Byte } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { SelectItem, PrimeNGConfig} from 'primeng/api';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { Publicacion } from 'src/app/interfaces/publicacion.interface';
 import { userCompleto } from 'src/app/interfaces/user.interface';
@@ -15,7 +16,7 @@ import { MostrarOtrosUsuariosService } from './services/mostrar-otros-usuarios.s
 })
 export class MostrarUsuarioBuscadoComponent implements OnInit {
 
-  constructor(private router: ActivatedRoute, private servicio: AuthService, private servicePublicacion: PublicacionService, private servicioMostrarotroUser: MostrarOtrosUsuariosService) { }
+  constructor(private primengConfig: PrimeNGConfig ,private router: ActivatedRoute, private servicio: AuthService, private servicePublicacion: PublicacionService, private servicioMostrarotroUser: MostrarOtrosUsuariosService) { }
   userName: string = "";
   seguido: boolean = false;
   user!: userCompleto;
@@ -23,8 +24,11 @@ export class MostrarUsuarioBuscadoComponent implements OnInit {
   visible: boolean = false;
   esElMismoUsuario: boolean = false;
   esSeguido: boolean = false;
+  checked1: boolean = false;
 
+  checked2: boolean = true;
   ngOnInit(): void {
+    this.primengConfig.ripple = true;
     this.userName = this.router.snapshot.params["nombreUsuario"];
     this.servicio.comprobarNombreUsuario(this.userName).subscribe(
       (resp) => {

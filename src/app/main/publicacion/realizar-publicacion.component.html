@@ -1,38 +1,34 @@
+<div class="tarjetaFormulario text-center col-10 col-lg-6 mt-2 m-auto">
+        
 
-
-
-  <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modal">Seleccione una imagen</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="file-loading">
-            <input id="input-b9" name="input-b9[]" multiple type="file" (change) = "obtenerFile($event)" >
-          </div>
-          <div id="kartik-file-errors"></div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Subir Imagen</button>
-        </div>
+  <div class="card m-auto mt-3" style="width: 20rem;" *ngIf="visible">
+    <div class="card-head"> 
+      <div class="d-flex">
+        <img class="img my-auto" *ngIf="user.fotoPerfil"src={{transformarAImagen(user.fotoPerfil)}} >
+        <img class="img my-auto " *ngIf="!user.fotoPerfil" src="../../../assets/img/user.png">
+        <p  class="text-white">{{user.userName}}</p>
       </div>
     </div>
+    <form (submit) ="subirImagen()" class="form" [formGroup]="formularioPublicacion">
+      <label for="input">
+        <p class="text-white">Selecciona la foto de tu publicacion: </p>
+        <img src={{imageURL}} type="file" class="m-auto imagen"/>
+      </label >
+      <input type="file" id="input" (change) ="obtenerFile($event)" formControlName="imagen" name="imagen">
+      <span class="form-text text-danger" *ngIf="formularioPublicacion.controls['imagen'].errors && formularioPublicacion.controls['imagen'].touched"> Es necesario añadir un título</span>
+      <div class="card-body mt-4">
+        <input type="text" class="titulo form-control form-control-lg text-center" formControlName="titulo" name="titulo" placeholder="Añadir titulo...">
+        <span class="form-text text-danger" *ngIf="formularioPublicacion.controls['titulo'].errors && formularioPublicacion.controls['titulo'].touched"> Es necesario añadir un título</span>  
+      </div>
+      <hr class="text-white"><div class="col-sm-9 img-upload m-auto">
+        <input class=" btn btn-dark btn-lg btn-block" [disabled]="formularioPublicacion.invalid" type="submit" value="Publicar">
+      </div>
+    </form>
+    
+  </div>
 </div>
 
-<div class="tarjetaFormulario text-center col-10 col-lg-6 mt-2 m-auto">
-    <form (submit)="subirImagen()">
-        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal">
-            <i class="bi bi-camera"></i><br>
-            Subir Imagen
-        </button>
-        <div *ngIf="imagen">
-            <p class="text-success">Imagen seleccionada !</p>
-            <input class="tituloInput" type="text" [(ngModel)]="titulo" name="titulo" placeholder="Escribe aquí tu pie de foto...">
-            <br><br>
-            <input class="btn btn-dark btn-lg btn-block enviar" type="submit">
-        </div>
-    </form>
-</div>
+
+
+
+

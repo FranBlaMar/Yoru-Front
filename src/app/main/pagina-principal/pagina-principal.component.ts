@@ -38,12 +38,18 @@ export class PaginaPrincipalComponent implements OnInit {
       .subscribe({
         next: (resp) => {
           if(resp.length == 0){
-            this.hayPublicaciones = 0;
             this.visible = true;
+            if(this.publicaciones.length == 0){
+              this.hayPublicaciones = 0;
+            }
           }
           else{
             this.publicacionesGustadas = resp;
             this.visible = true;
+            console.log(this.publicacionesGustadas)
+            if(this.publicaciones.length == 0){
+              this.hayPublicaciones = 0;
+            }
           }
         },
         error: (err) => {
@@ -63,12 +69,12 @@ export class PaginaPrincipalComponent implements OnInit {
   
   
     //Método para añadir un comentario
-    publicarComentario(publi: Publicacion,){
-      this.servicioPubli.añadirComentario(publi,this.mensajeComentario)
-      .subscribe(
-        (resp) => {this.ngOnInit(), this.mensajeComentario = "", this.longitudComentario = 0}
-      )
-    }
+    publicarComentario(publi: Publicacion,mensajeComentario: string){
+    this.servicioPubli.añadirComentario(publi,mensajeComentario)
+    .subscribe(
+      (resp) => {this.ngOnInit()}
+    )
+  }
   
     //Método para borrar una publicación
     borrarPublicacion(publi: Publicacion){
@@ -89,18 +95,28 @@ export class PaginaPrincipalComponent implements OnInit {
       }
     }
   
-    //Método para darle like a una publicación
-    darLike(publi: Publicacion){
-      this.servicioPubli.darLikeaPublicacion(publi)
-      .subscribe( (resp) => this.ngOnInit())
-    }
-  
-  
-    //Método para quitarle el like a una publicación
-    quitarLike(publi: Publicacion){
-      this.servicioPubli.quitarLikeaPublicacion(publi)
-      .subscribe( (resp) => this.ngOnInit())
-    }
+  //Método para darle like a una publicación
+  darLike(publi: Publicacion){
+    this.servicioPubli.darLikeaPublicacion(publi)
+    .subscribe( (resp) => {
+      this.publicacionesGustadas.push(publi);
+      let indice = this.publicaciones.findIndex((x:any) => x.idPublicacion === publi.idPublicacion);
+      this.publicaciones[indice].likes ++;
+
+    })
+  }
+
+
+  //Método para quitarle el like a una publicación
+  quitarLike(publi: Publicacion){
+    this.servicioPubli.quitarLikeaPublicacion(publi)
+    .subscribe( (resp) => {
+      let indice = this.publicacionesGustadas.findIndex((x:any) => x.idPublicacion === publi.idPublicacion);
+      this.publicacionesGustadas.splice(indice, 1);
+      let indicePubli = this.publicaciones.findIndex((x:any) => x.idPublicacion === publi.idPublicacion);
+      this.publicaciones[indicePubli].likes --;
+    })
+  }
   
     //Método para transformar un array de bytes en url base 64
     transformarAImagen(file: Byte[]){

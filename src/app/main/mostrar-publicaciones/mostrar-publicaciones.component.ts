@@ -18,18 +18,11 @@ export class MostrarPublicacionesComponent implements OnInit {
   publicaciones: Publicacion[] = [];
   visible: boolean = false;
   publicacionesGustadas: Publicacion[] = [];
-  mensajeComentario: string = "";
   @Input() usuario!: userCompleto;
-  longitudComentario: number = this.mensajeComentario.length;
   hayPublicaciones: number = 2;
 
   ngOnInit(): void {
     this.obtenerPublicaciones();
-  }
-
-  //Método para comprobar que la longitud del comentario es mayor a 0 y menor que 30
-  comprobarLongitud(){
-    this.longitudComentario = this.mensajeComentario.length;
   }
 
    //Método para obtener las publicaciones del usuario deseado
@@ -85,10 +78,10 @@ export class MostrarPublicacionesComponent implements OnInit {
 
 
   //Método para añadir un comentario
-  publicarComentario(publi: Publicacion,){
-    this.servicioPubli.añadirComentario(publi,this.mensajeComentario)
+  publicarComentario(publi: Publicacion,mensajeComentario: string){
+    this.servicioPubli.añadirComentario(publi,mensajeComentario)
     .subscribe(
-      (resp) => {this.ngOnInit(), this.mensajeComentario = "", this.longitudComentario = 0}
+      (resp) => {this.ngOnInit()}
     )
   }
 
@@ -115,15 +108,25 @@ export class MostrarPublicacionesComponent implements OnInit {
   //Método para darle like a una publicación
   darLike(publi: Publicacion){
     this.servicioPubli.darLikeaPublicacion(publi)
-    .subscribe( (resp) => this.ngOnInit())
+    .subscribe( (resp) => {
+      this.publicacionesGustadas.push(publi);
+      let indice = this.publicaciones.findIndex((x:any) => x.idPublicacion === publi.idPublicacion);
+      this.publicaciones[indice].likes ++;
+
+    })
   }
 
 
-  //Método para quitarle el like a una publicación
-  quitarLike(publi: Publicacion){
-    this.servicioPubli.quitarLikeaPublicacion(publi)
-    .subscribe( (resp) => this.ngOnInit())
-  }
+    //Método para quitarle el like a una publicación
+    quitarLike(publi: Publicacion){
+      this.servicioPubli.quitarLikeaPublicacion(publi)
+      .subscribe( (resp) => {
+        let indice = this.publicacionesGustadas.findIndex((x:any) => x.idPublicacion === publi.idPublicacion);
+        this.publicacionesGustadas.splice(indice, 1);
+        let indicePubli = this.publicaciones.findIndex((x:any) => x.idPublicacion === publi.idPublicacion);
+        this.publicaciones[indicePubli].likes --;
+      })
+    }
 
   //Método para transformar un array de bytes en url base 64
   transformarAImagen(file: Byte[]){
