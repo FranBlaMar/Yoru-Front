@@ -6,7 +6,7 @@ import { map, Observable } from 'rxjs';
 import { userCompleto, userRegistro } from 'src/app/interfaces/user.interface';
 import Swal from 'sweetalert2';
 import { AuthService } from '../services/auth.service';
-
+import Compressor from 'compressorjs';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
 
   imagen!: FileList;
   imageURL: String = "../../../assets/img/user2.png";
-
+  static imagenComprimida: any;
   formularioRegistro: FormGroup = this.builder.group({
     userName: [ '', [ Validators.required, Validators.minLength(3) ],  [this.comprobarNombreUsuario()]],
     password: ['',[Validators.required, Validators.minLength(8), Validators.pattern('(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=[^0-9]*[0-9]).{8,}')]],
@@ -28,9 +28,14 @@ export class RegisterComponent implements OnInit {
   });
 
 
+
   //Método para obtene runa imagen de un file input
   obtenerFile(event: any): void {
     this.imagen = event.target.files;
+    new Compressor(this.imagen[0],{ quality: 0.3, success(result) {
+      RegisterComponent.imagenComprimida = result;
+    }
+    });
     const reader = new FileReader();
     reader.onload = () => 
       this.imageURL = reader.result as string;
@@ -79,7 +84,7 @@ export class RegisterComponent implements OnInit {
 
   //Metodo para registrar un usuario
   register(){
-    let file: File | null = this.imagen.item(0);
+    let file: File | null = RegisterComponent.imagenComprimida;
     if(file){
     this.servicio.register(this.formularioRegistro.value.email,this.formularioRegistro.value.userName, this.formularioRegistro.value.password, file )
     .subscribe({

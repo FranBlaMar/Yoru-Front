@@ -56,6 +56,7 @@ export class MostrarPublicacionesComponent implements OnInit {
         }
         else{
           this.hayPublicaciones = 1;
+          console.log(resp)
           this.publicaciones = resp;
           this.obtenerPublicacionesGustadasUserlogueado();
         }
@@ -167,6 +168,6 @@ export class MostrarPublicacionesComponent implements OnInit {
 
   //Método para transformar un array de bytes en url base 64
   transformarAImagen(file: Byte[]){
-    return 'data:image/png;base64,' + btoa(String.fromCharCode(...new Uint8Array(file))) + file;
+    return 'data:image/jpeg;base64,' + btoa(String.fromCharCode(...new Uint8Array(file))) + file;
   }
 }
