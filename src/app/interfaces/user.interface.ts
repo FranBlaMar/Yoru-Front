@@ -17,7 +17,8 @@ export interface userCompleto{
     fotoPerfil: Byte[],
     publicaciones: Publicacion[],
     seguidores: userCompleto[],
-    seguidos: userCompleto[]
+    seguidos: userCompleto[],
+    role: string
 }
 
 export interface userRegistro{

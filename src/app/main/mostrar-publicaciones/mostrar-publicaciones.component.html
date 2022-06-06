@@ -9,7 +9,7 @@
     
     <div class="card" style="width: 20rem;" *ngFor="let publi of publicaciones">
       <div class="card-head"> 
-        <i class="bi bi-trash borrar mr-0" (click)="borrarPublicacion(publi)" *ngIf="comprobarSiLaPublicacionEsDelUsuarioLogueado(publi)"></i>
+        <i class="bi bi-trash borrar mr-0" (click)="borrarPublicacion(publi)" *ngIf="comprobarSiLaPublicacionEsDelUsuarioLogueado(publi) || userLogueado.role == 'ADMIN' "></i>
 
         <div class="d-flex">
           <img *ngIf="publi.autor.fotoPerfil" [routerLink]="[publi.autor.userName]" class="perfilComentario my-auto " src="{{transformarAImagen(publi.autor.fotoPerfil)}}">

@@ -11,11 +11,10 @@
     </div>
     <form (submit) ="subirImagen()" class="form" [formGroup]="formularioPublicacion">
       <label for="input">
-        <p class="text-white">Selecciona la foto de tu publicacion: </p>
+        <p class="text-white">Selecciona la foto de tu publicación: </p>
         <img src={{imageURL}} type="file" class="m-auto imagen"/>
       </label >
       <input type="file" id="input" (change) ="obtenerFile($event)" formControlName="imagen" name="imagen">
-      <span class="form-text text-danger" *ngIf="formularioPublicacion.controls['imagen'].errors && formularioPublicacion.controls['imagen'].touched"> Es necesario añadir un título</span>
       <div class="card-body mt-4">
         <input type="text" class="titulo form-control form-control-lg text-center" formControlName="titulo" name="titulo" placeholder="Añadir titulo...">
         <span class="form-text text-danger" *ngIf="formularioPublicacion.controls['titulo'].errors && formularioPublicacion.controls['titulo'].touched"> Es necesario añadir un título</span>  

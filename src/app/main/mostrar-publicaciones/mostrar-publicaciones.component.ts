@@ -20,11 +20,31 @@ export class MostrarPublicacionesComponent implements OnInit {
   publicacionesGustadas: Publicacion[] = [];
   @Input() usuario!: userCompleto;
   hayPublicaciones: number = 2;
+  userLogueado!: userCompleto;
 
   ngOnInit(): void {
-    this.obtenerPublicaciones();
+    this.obtenerUsuarioLogeado();
   }
 
+   //metodo para obtener el usuario 
+   obtenerUsuarioLogeado(){
+    this.servicioUser.comprobarToken().subscribe({
+      next: (resp) => {
+        this.userLogueado = resp;
+        this.obtenerPublicaciones();
+      },
+      error: (err) => {
+        Swal.fire({
+          title: 'Error...',
+          text: `${err.error.errorMessage}`,
+          width: 600,
+          padding: '5em',
+          color: '#FFF',
+          background: ' url(./assets/img/fondoError.gif)',
+        })
+      }
+    })
+  }
    //Método para obtener las publicaciones del usuario deseado
    obtenerPublicaciones(){
     this.servicioPubli.obtenerPublicacionesDeUsuario(this.usuario.email)
@@ -84,15 +104,32 @@ export class MostrarPublicacionesComponent implements OnInit {
       (resp) => {this.ngOnInit()}
     )
   }
-
   //Método para borrar una publicación
   borrarPublicacion(publi: Publicacion){
-    this.servicioPubli.borrarPublicacion(publi)
-    .subscribe(
-      (resp) => {
-        this.publicaciones.splice(this.publicaciones.indexOf(publi), 1), 
-        this.usuario.numeroPublicaciones --}
-    )
+    Swal.fire({
+      title: '¿Seguro que deseas borrar esta publicación?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.servicioPubli.borrarPublicacion(publi)
+        .subscribe(
+          (resp) => {
+            this.publicaciones.splice(this.publicaciones.indexOf(publi), 1), 
+            this.usuario.numeroPublicaciones --,
+            Swal.fire(
+              '¡Borrado!',
+              'Se ha borrado la publicación',
+              'success'
+            )}
+        )
+        
+      }
+    })
+    
   }
 
   //Método para comprobar si la publicacion mostrada pertenece al usuario logueado
