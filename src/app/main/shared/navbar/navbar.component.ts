@@ -1,6 +1,7 @@
 import { Byte } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { userCompleto } from 'src/app/interfaces/user.interface';
 
@@ -12,6 +13,7 @@ import { userCompleto } from 'src/app/interfaces/user.interface';
 export class NavbarComponent implements OnInit {
 
   constructor(private router: Router, private servicio: AuthService) { }
+  paramsSubscription!: Subscription;
 
   ngOnInit(): void {
     this.obtenerUsuario();

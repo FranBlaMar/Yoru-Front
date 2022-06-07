@@ -71,7 +71,9 @@ h5{
 .infoPerfil{
     min-width: 75%;
 }
-
+.separador{
+    padding-top: 10rem;
+}
 .card{
     background-color: rgb(0, 0, 0);
     padding: 0.5rem;

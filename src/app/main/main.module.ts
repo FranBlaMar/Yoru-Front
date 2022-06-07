@@ -11,7 +11,8 @@ import { BuscarUsuarioComponent } from './buscar-usuario/buscar-usuario.componen
 import { MostrarUsuarioBuscadoComponent } from './mostrar-usuario-buscado/mostrar-usuario-buscado.component';
 import { MostrarPublicacionesComponent } from './mostrar-publicaciones/mostrar-publicaciones.component';
 import { PaginaPrincipalComponent } from './pagina-principal/pagina-principal.component';
-
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import {AvatarModule} from 'primeng/avatar';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,9 @@ import { PaginaPrincipalComponent } from './pagina-principal/pagina-principal.co
     MainRoutingModule,
     ReactiveFormsModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    InfiniteScrollModule,
+    AvatarModule
   ]
 })
 export class MainModule { }

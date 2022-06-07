@@ -3,12 +3,25 @@
     background-color: rgba(255, 255, 255, 0.7);
     max-width: 75%;
     margin: auto;
-    margin-top: 2rem;
     backdrop-filter: blur(150px);
+
+}
+#input
+{
+    display: none;
+}
+.small{
+    font-size: 1rem;
+    color: rgb(0, 17, 255);
+    cursor: pointer;
+}
+.separador{
+    padding-top: 10rem;
 }
 .fotoPerfil{
     min-width: 25%;
     margin: auto;
+    margin-top: 5rem;
 }
 a{
     text-decoration: none;

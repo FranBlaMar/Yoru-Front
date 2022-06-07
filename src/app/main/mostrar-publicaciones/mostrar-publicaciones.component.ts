@@ -113,6 +113,7 @@ export class MostrarPublicacionesComponent implements OnInit {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
+      cancelButtonText: 'No',
       confirmButtonText: 'Si'
     }).then((result) => {
       if (result.isConfirmed) {

@@ -114,7 +114,9 @@ h5{
     background-color: rgb(107, 190, 0);
     border: 3px solid rgb(107, 190, 0);
 }
-
+.separador{
+    padding-top: 10rem;
+}
 .numeros{
     margin-top: 6%;
 }

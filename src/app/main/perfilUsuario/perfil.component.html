@@ -1,12 +1,19 @@
-
+<div class="separador"></div>
 <div class="datosUser" *ngIf="visible">
-  <div class="d-flex justify-content-around flex-wrap">
+  <div class=" datos d-flex justify-content-around flex-wrap">
 
     <div class="fotoPerfil text-center">
 
       <div class="">
-        <img *ngIf="user.fotoPerfil" class="img" src="{{transformarAImagen(user.fotoPerfil)}}">
-        <img *ngIf="!user.fotoPerfil" class="img" src="../../../assets/img/user.png">
+        
+          <img *ngIf="fotoPerfil != ''" class="img mb-1" src="{{fotoPerfil}}">
+          <img *ngIf="fotoPerfil == ''" class="img mb-1" src="../../../assets/img/user.png">
+          <br>
+        <label for="input">
+          <p class="small mt-0 mb-5"> Cambiar foto de perfil...</p>
+        </label>
+        <input type="file" id="input"  (change) ="obtenerFile($event)" name="fotoPerfil">
+        
         <h5 class="card-title nombreUser m-auto">@{{user.userName}}</h5>
       </div>
       <hr class="d-lg-none d-xs-block">

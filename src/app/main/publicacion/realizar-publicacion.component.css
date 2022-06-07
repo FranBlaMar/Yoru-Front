@@ -19,6 +19,9 @@ hr{
     min-height: 2rem;
     border-radius:100px;
 }
+.separador{
+    padding-top: 10rem;
+}
 ::placeholder{
     color: rgb(255, 255, 255);
 }

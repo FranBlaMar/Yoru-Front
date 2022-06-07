@@ -1,6 +1,7 @@
 import { Byte } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { Comentario } from 'src/app/interfaces/comentario.interface';
 import { Publicacion } from 'src/app/interfaces/publicacion.interface';
 import { PublicacionService } from '../publicacion/services/publicacion.service';
 
@@ -12,6 +13,7 @@ import { PublicacionService } from '../publicacion/services/publicacion.service'
 export class PaginaPrincipalComponent implements OnInit {
 
   constructor( private servicioPubli: PublicacionService, private servicioUser: AuthService) { }
+  offSet: number = 0;
   publicaciones: Publicacion[] = [];
   visible: boolean = false;
   publicacionesGustadas: Publicacion[] = [];
@@ -20,9 +22,9 @@ export class PaginaPrincipalComponent implements OnInit {
   hayPublicaciones: number = 1;
   
   ngOnInit(): void {
-    this.servicioUser.obtenerPublicacionesSeguidos()
+    this.servicioUser.obtenerPublicacionesSeguidos(this.offSet)
     .subscribe(
-      (resp) => {this.publicaciones = resp, 
+      (resp) => {this.publicaciones.push.apply(this.publicaciones, resp), 
         this.obtenerPublicacionesGustadasUserlogueado()}
     )
   }
@@ -46,7 +48,6 @@ export class PaginaPrincipalComponent implements OnInit {
           else{
             this.publicacionesGustadas = resp;
             this.visible = true;
-            console.log(this.publicacionesGustadas)
             if(this.publicaciones.length == 0){
               this.hayPublicaciones = 0;
             }
@@ -72,7 +73,20 @@ export class PaginaPrincipalComponent implements OnInit {
     publicarComentario(publi: Publicacion,mensajeComentario: string){
     this.servicioPubli.añadirComentario(publi,mensajeComentario)
     .subscribe(
-      (resp) => {this.ngOnInit()}
+      (resp) => {
+        this.servicioUser.comprobarToken()
+        .subscribe(
+          (resp) => {
+            let coment: Comentario = {
+              idComentario: 0,
+              cuerpoComentario: mensajeComentario,
+              autor: resp
+            }
+            let indice: number = this.publicaciones.findIndex(((x:any) => x.idPublicacion === publi.idPublicacion));
+            this.publicaciones[indice].comentarios.push(coment);
+           }
+        )
+      }
     )
   }
   
@@ -123,4 +137,10 @@ export class PaginaPrincipalComponent implements OnInit {
       return 'data:image/png;base64,' + btoa(String.fromCharCode(...new Uint8Array(file))) + file;
     }
 
+
+    scrollDown(){
+      this.offSet ++;
+      console.log(this.offSet)
+      this.ngOnInit();
+    }
 }

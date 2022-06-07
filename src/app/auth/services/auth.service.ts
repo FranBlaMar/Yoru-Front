@@ -93,10 +93,18 @@ export class AuthService {
         return this.http.put<userCompleto>( url, user, {headers} ) 
     }
 
+    editarFotoPerfil(fotoPerfil: File){
+        const url = `${ this.URLBase }/user/fotoPerfil`;
+        const headers = new HttpHeaders()
+        .set('Authorization', `Bearer ${localStorage.getItem('jwt')}`  || '' );
+        const datos: FormData = new FormData();
+        datos.append('file', fotoPerfil);
+        return this.http.put<userCompleto>( url, datos, {headers} )
+    }
 
     //Método para obtener las publicaciones de los seguidos del usuario logueado
-    obtenerPublicacionesSeguidos(){
-        const url = `${ this.URLBase }/user/follower/publicacion`;
+    obtenerPublicacionesSeguidos(offSet: number){
+        const url = `${ this.URLBase }/user/follower/publicacion/${offSet}`;
         const headers = new HttpHeaders()
         .set('Authorization', `Bearer ${localStorage.getItem('jwt')}`  || '' );
         return this.http.get<Publicacion[]>( url, {headers} ) 

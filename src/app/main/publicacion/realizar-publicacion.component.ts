@@ -32,11 +32,14 @@ export class RealizarPublicacionComponent implements OnInit {
     //Selecciono la imagen a comprimir, la calidad (Quality: 0 - 1)
     //Success devuelve la imagen comprimida
     //No deja obtener los campos dentro del método por lo cual es necesario usar una variable estática
+    if(this.imagen[0].size >= 1000000){
     new Compressor(this.imagen[0],{ quality: 0.3, success(result) {
       RealizarPublicacionComponent.imagenComprimida = result;
     }
     });
-    this.imagen = event.target.files;
+  }else{
+    RealizarPublicacionComponent.imagenComprimida = this.imagen[0];
+  }
     const reader = new FileReader();
     reader.onload = () => 
       this.imageURL = reader.result as string;
