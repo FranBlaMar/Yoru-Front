@@ -41,6 +41,7 @@ export class MostrarUsuarioBuscadoComponent implements OnInit {
 
   }
 
+  //Método para seguir a un usuario
   seguir(){
     this.servicioMostrarotroUser.seguirUsuario(this.user)
     .subscribe(
@@ -48,6 +49,7 @@ export class MostrarUsuarioBuscadoComponent implements OnInit {
     )
   }
 
+  //Método para dejar de seguir a un usuario
   dejarDeSeguir(){
     this.servicioMostrarotroUser.dejarDeSeguirUsuario(this.user)
     .subscribe(

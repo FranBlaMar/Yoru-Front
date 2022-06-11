@@ -1,39 +1,83 @@
 
 <div class="separador"></div>
-<div class="fondo col-10 col-lg-8 m-auto text-center mt-2 ">
-    <br>
-    <div class="control col-sm-5 col-lg-6 has-icons-right text-center m-auto">
-        <input class="input m-auto form-control form-control-lg text-center " type="text" placeholder="Introduzca un nombre..." name="busqueda"  [(ngModel)]="busqueda" (change) ="buscarUsuario()">
-        <span class="icon is-small is-right">
-            <i class="bi bi-search"></i>
-        </span>
-    </div>
-    <br>
-    <h3 *ngIf="historialVacio" class="text-white"> No hay búsquedas recientes </h3>
+
+
+
+<div class="fondo col-10 col-lg-8 m-auto text-center mt-2 " *ngIf="visible">
+    <ul class="nav nav-tabs fondoPestañas" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="user-tab" data-bs-toggle="tab" data-bs-target="#user" type="button" role="tab" aria-controls="user" aria-selected="true">Nombre de usuario</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="hobbie-tab" data-bs-toggle="tab" data-bs-target="#hobbie" type="button" role="tab" aria-controls="hobbie" aria-selected="false">Hobbie</button>
+        </li>
     
-    <div *ngIf="!historialVacio && !resultados">
-        <h4 class="text-white mt-4"> Búsquedas recientes...</h4>
-        <div *ngFor="let usuario of historial">
-            <div class="usuario d-flex flex-wrap col-10 col-lg-8 m-auto mt-3">
+    </ul>
+    <br>
+    <div class="tab-content">
+        <div class="tab-pane active" id="user" role="tabpanel" aria-labelledby="home-tab">
+            <div class="control col-sm-5 col-lg-6 has-icons-right text-center m-auto">
+                <input class="input m-auto form-control form-control-lg text-center " type="text" placeholder="Introduzca un nombre..." name="busqueda"  [(ngModel)]="busqueda" (change) ="buscarUsuario()">
+                <span class="icon is-small is-right">
+                    <i class="bi bi-search"></i>
+                </span>
+            </div>
+        
+        <br>
+        <h3 *ngIf="historialVacio" class="text-white"> No hay búsquedas recientes </h3>
+        
+        <div *ngIf="!historialVacio && !resultados">
+            <h4 class="text-white mt-4"> Búsquedas recientes...</h4>
+            <div *ngFor="let usuario of historial">
+                <div class="usuario d-flex flex-wrap col-10 col-lg-8 m-auto mt-3">
+                    <div class="">
+                        <img *ngIf="usuario.fotoPerfil" [routerLink]="[usuario.userName]" class="img" src="{{transformarAImagen(usuario.fotoPerfil)}}">
+                        <img *ngIf="!usuario.fotoPerfil" [routerLink]="[usuario.userName]" class="img" src="../../../assets/img/user.png">
+                    </div>
+                    <p class="nombreUser"> {{usuario.userName}}</p>
+                    <p class="info m-auto align-items-center justify-content-center d-flex flex-wrap"> {{usuario.aboutMe}}</p>
+                </div>
+            </div>
+        </div>
+        <div *ngFor="let usuario of resultados">
+            <div class="usuario d-flex flex-wrap col-10 col-lg-8 m-auto mt-5">
                 <div class="">
                     <img *ngIf="usuario.fotoPerfil" [routerLink]="[usuario.userName]" class="img" src="{{transformarAImagen(usuario.fotoPerfil)}}">
                     <img *ngIf="!usuario.fotoPerfil" [routerLink]="[usuario.userName]" class="img" src="../../../assets/img/user.png">
                 </div>
-                <p class="nombreUser"> {{usuario.userName}}</p>
-                <p class="info m-auto align-items-center justify-content-center d-flex flex-wrap"> {{usuario.aboutMe}}</p>
+                <p class="nombreUser" [routerLink]="[usuario.userName]"> {{usuario.userName}}</p>
+                <p class="info m-auto align-items-center justify-content-center d-flex flex-wrap" [routerLink]="[usuario.userName]"> {{usuario.aboutMe}}</p>
             </div>
         </div>
-    </div>
-    <div *ngFor="let usuario of resultados">
-        <div class="usuario d-flex flex-wrap col-10 col-lg-8 m-auto mt-5">
-            <div class="">
-                <img *ngIf="usuario.fotoPerfil" [routerLink]="[usuario.userName]" class="img" src="{{transformarAImagen(usuario.fotoPerfil)}}">
-                <img *ngIf="!usuario.fotoPerfil" [routerLink]="[usuario.userName]" class="img" src="../../../assets/img/user.png">
+        </div>
+        <div class="tab-pane" id="hobbie" role="tabpanel" aria-labelledby="home-tab">
+            <div class="control col-sm-5 col-lg-6 has-icons-right text-center m-auto">
+                <h4 class="mb-0 text-white">Selecciona el hobbie por el cual deseas buscar usuarios: </h4>
+                <select name="hobbie" (change) ="cambiarHobbieBusqueda()" [(ngModel)]="busquedaHobbie" class=" selectHobbie col-6 text-center m-auto mt-3 mb-3">
+        
+                    <option *ngFor="let hobbie of listaHobbies" value="{{hobbie.hobbie}}">{{hobbie.hobbie}}</option>
+                    
+                    </select>
             </div>
-            <p class="nombreUser" [routerLink]="[usuario.userName]"> {{usuario.userName}}</p>
-            <p class="info m-auto align-items-center justify-content-center d-flex flex-wrap" [routerLink]="[usuario.userName]"> {{usuario.aboutMe}}</p>
+            <div *ngIf="resultadosHobbie.length == 0 && !inicio">
+                <h4 class="text-white mt-5"> No se han encontrado resultados...</h4>
+            </div>
+            <div *ngFor="let usuario of resultadosHobbie" >
+                <div class="usuario d-flex flex-wrap col-10 col-lg-8 m-auto mt-5">
+                    <div class="">
+                        <img *ngIf="usuario.fotoPerfil" [routerLink]="[usuario.userName]" class="img" src="{{transformarAImagen(usuario.fotoPerfil)}}">
+                        <img *ngIf="!usuario.fotoPerfil" [routerLink]="[usuario.userName]" class="img" src="../../../assets/img/user.png">
+                    </div>
+                    <p class="nombreUser" [routerLink]="[usuario.userName]"> {{usuario.userName}}</p>
+                    <p class="info m-auto align-items-center justify-content-center d-flex flex-wrap" [routerLink]="[usuario.userName]"> {{usuario.aboutMe}}</p>
+                </div>
+            </div>
+            <h5 class="enlaceMas mt-3" (click)="mostrarMas()" *ngIf="!inicio && resultadosHobbie.length > 2 && hayMasResultados"> Mostrar más ...</h5>
         </div>
     </div>
+
+
+
     <br><br>
 </div>
 

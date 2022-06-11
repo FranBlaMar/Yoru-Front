@@ -21,6 +21,8 @@ export class NavbarComponent implements OnInit {
 
   user!: userCompleto;
   visible: boolean = false;
+
+  
   //Método para obtener al usuario logueado
   obtenerUsuario(){
     this.servicio.comprobarToken()
@@ -38,8 +40,7 @@ export class NavbarComponent implements OnInit {
 
   //Metodo para cerrar sesion 
   cerrarSesion(){
-    localStorage.removeItem("jwt");
-    localStorage.removeItem("email");
+    localStorage.clear();
     this.router.navigateByUrl('');
   }
 

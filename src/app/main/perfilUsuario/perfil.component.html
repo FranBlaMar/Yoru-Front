@@ -2,7 +2,7 @@
 <div class="datosUser" *ngIf="visible">
   <div class=" datos d-flex justify-content-around flex-wrap">
 
-    <div class="fotoPerfil text-center">
+    <div class="fotoPerfil text-center mt-0">
 
       <div class="">
         
@@ -15,6 +15,8 @@
         <input type="file" id="input"  (change) ="obtenerFile($event)" name="fotoPerfil">
         
         <h5 class="card-title nombreUser m-auto">@{{user.userName}}</h5>
+        <hr>
+        <h5 class="m-auto"> Hobbie: <span *ngIf="user.hobbie">{{user.hobbie.hobbie}}</span> <span *ngIf="!user.hobbie"> No seleccionado</span> <a class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#modalHobbie"></a></h5> 
       </div>
       <hr class="d-lg-none d-xs-block">
     </div>
@@ -40,6 +42,22 @@
   <div class="modal-dialog modal-lg modal-fullscreen-lg-down m-auto mt-5">
     <div class="modal-content col-8 m-auto ">
       <textarea class="mt-5 col-8 m-auto" [(ngModel)]= "aboutMe" id="aboutMe" placeholder="Introduzca su presentación..."></textarea>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-dark" data-bs-dismiss="modal" (click)= "editarUsuario()" >Realizar cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalHobbie" tabindex="-1" aria-labelledby="modalHobbie" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-fullscreen-lg-down m-auto mt-5">
+    <div class="modal-content col-8 m-auto">
+      <select name="hobbie" [(ngModel)]="idHobbie" class="col-6 text-center m-auto mt-3 mb-3">
+        
+        <option *ngFor="let hobbie of listaHobbies" value="{{hobbie.idHobbie}}">{{hobbie.hobbie}}</option>
+        
+        </select>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
         <button type="button" class="btn btn-dark" data-bs-dismiss="modal" (click)= "editarUsuario()" >Realizar cambios</button>

@@ -18,9 +18,14 @@ export interface userCompleto{
     publicaciones: Publicacion[],
     seguidores: userCompleto[],
     seguidos: userCompleto[],
+    hobbie: hobbie,
     role: string
 }
 
+export interface hobbie{
+    idHobbie: number,
+    hobbie: string
+} 
 export interface userRegistro{
     userName: string,
     password: string,

@@ -15,7 +15,7 @@ export class EmailVerificationComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
+  //Formulario con datos para registrar un correo
   formularioRegistro: FormGroup = this.builder.group({
     email: ['',[Validators.required, Validators.pattern("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$")]]
   });

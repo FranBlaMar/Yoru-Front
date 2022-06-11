@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Publicacion } from 'src/app/interfaces/publicacion.interface';
 import { RespuestaAuth } from 'src/app/interfaces/token.interface';
-import { userCompleto, userLogin } from 'src/app/interfaces/user.interface';
+import { hobbie, userCompleto, userLogin } from 'src/app/interfaces/user.interface';
 import { environment } from 'src/environments/environment.prod';
 import Swal from 'sweetalert2';
 
@@ -93,6 +93,7 @@ export class AuthService {
         return this.http.put<userCompleto>( url, user, {headers} ) 
     }
 
+    //Método para editar la foto de perfil del usuario logueado
     editarFotoPerfil(fotoPerfil: File){
         const url = `${ this.URLBase }/user/fotoPerfil`;
         const headers = new HttpHeaders()
@@ -108,5 +109,21 @@ export class AuthService {
         const headers = new HttpHeaders()
         .set('Authorization', `Bearer ${localStorage.getItem('jwt')}`  || '' );
         return this.http.get<Publicacion[]>( url, {headers} ) 
+    }
+
+    //Método para obtener todos los hobbies
+    obtenerHobbies(){
+        const url = `${ this.URLBase }/hobbie`;
+        const headers = new HttpHeaders()
+        .set('Authorization', `Bearer ${localStorage.getItem('jwt')}`  || '' );
+        return this.http.get<hobbie[]>( url, {headers} ) 
+    }
+
+    //Método para obtener usuarios mediante su hobbie
+    buscarUserPorHobbie(hobbie: string, offset: number){
+        const url = `${ this.URLBase }/user/${hobbie}/${offset}`;
+        const headers = new HttpHeaders()
+        .set('Authorization', `Bearer ${localStorage.getItem('jwt')}`  || '' );
+        return this.http.get<userCompleto[]>( url, {headers} ) 
     }
 }

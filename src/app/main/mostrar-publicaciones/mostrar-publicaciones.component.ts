@@ -128,7 +128,6 @@ export class MostrarPublicacionesComponent implements OnInit {
               'success'
             )}
         )
-        
       }
     })
     

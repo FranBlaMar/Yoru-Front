@@ -2,7 +2,7 @@ import { Byte } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { userCompleto } from 'src/app/interfaces/user.interface';
+import { hobbie, userCompleto } from 'src/app/interfaces/user.interface';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -13,19 +13,37 @@ import Swal from 'sweetalert2';
 export class BuscarUsuarioComponent implements OnInit {
 
   constructor(private servicio: AuthService, private route: Router) { }
+  hayMasResultados: boolean = true;
+  inicio: boolean = true;
   resultados!: userCompleto[];
+  resultadosHobbie: userCompleto[] = [];
+  offSet: number = 0;
   busqueda: string = "";
   historial!: userCompleto[];
   historialVacio: boolean = true;
+  listaHobbies: hobbie[] = [];
+  visible: boolean = false;
+  busquedaHobbie: string = "";
 
   ngOnInit(): void {
+    this.obtenerHobbiesRedSocial();
     this.historial=  JSON.parse(localStorage.getItem("historial") || "[]");
     if(this.historial.length == 0){
       this.historialVacio = true;
+
     }
     else{
       this.historialVacio = false;
     }
+  }
+
+
+  //Método para obtener todos los hobbies
+  obtenerHobbiesRedSocial(){
+    this.servicio.obtenerHobbies()
+    .subscribe(
+      (resp) => {this.listaHobbies = resp, this.visible = true}
+    )
   }
 
   //Método para obtener usuarios mediante su userName
@@ -61,6 +79,43 @@ export class BuscarUsuarioComponent implements OnInit {
         }
 
 
+      },
+      error: (err) => {
+        Swal.fire({
+          title: 'Error...',
+          text: `${err.error.errorMessage}`,
+          width: 600,
+          padding: '5em',
+          color: '#FFF',
+          background: ' url(./assets/img/fondoError.gif)',
+        })
+      }
+    })
+  }
+
+  //Metodo para buscar nuevos susuarios medaitne un hobbie diferente
+  cambiarHobbieBusqueda(){
+    this.offSet = 0;
+    this.resultadosHobbie = [];
+    this.buscarUsuarioHobbie();
+  }
+
+  //Método para mostar mas usuarios con el hobbie ya buscado
+  mostrarMas(){
+    this.offSet ++;
+    this.buscarUsuarioHobbie();
+  }
+
+  //Método para obtener usuarios mediante su hobbie
+  buscarUsuarioHobbie(){
+    this.servicio.buscarUserPorHobbie(this.busquedaHobbie, this.offSet)
+    .subscribe({
+      next: (resp) => {
+          this.resultadosHobbie.push.apply(this.resultadosHobbie, resp)
+          this.inicio = false;
+          if(resp.length < 3){
+            this.hayMasResultados = false;
+          }
       },
       error: (err) => {
         Swal.fire({

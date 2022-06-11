@@ -138,9 +138,9 @@ export class PaginaPrincipalComponent implements OnInit {
     }
 
 
+    //Método para obtener más publicaciones al scrollear
     scrollDown(){
       this.offSet ++;
-      console.log(this.offSet)
       this.ngOnInit();
     }
 }
