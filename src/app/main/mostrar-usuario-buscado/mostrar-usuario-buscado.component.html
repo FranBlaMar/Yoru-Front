@@ -6,7 +6,7 @@
 
       <div class="">
         <img *ngIf="user.fotoPerfil" class="img" src="{{transformarAImagen(user.fotoPerfil)}}">
-        <img *ngIf="!user.fotoPerfil" class="img" src="../../../assets/img/user.png">
+        <img *ngIf="!user.fotoPerfil" class="img" src="./assets/img/user.png">
         <h5 class="card-title nombreUser m-auto">@{{user.userName}}</h5>
         <hr>
         <h5 class="m-auto"> Hobbie: <span *ngIf="user.hobbie">{{user.hobbie.hobbie}}</span> <span *ngIf="!user.hobbie"> No seleccionado</span></h5> 

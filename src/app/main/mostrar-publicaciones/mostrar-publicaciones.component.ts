@@ -81,6 +81,7 @@ export class MostrarPublicacionesComponent implements OnInit {
       next: (resp) => {
         this.publicacionesGustadas = resp;
         this.visible = true;
+        console.log(resp)
       },
       error: (err) => {
         this.visible = true;

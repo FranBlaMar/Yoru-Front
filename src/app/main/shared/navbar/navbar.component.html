@@ -10,7 +10,7 @@
 
         <a class="h5 nav-link  font-weight-bold" [routerLink]="['usuario']" routerLinkActive="active" data-bs-target="#navbar"><i class="bi bi-search"></i></a>
 
-        <a class="h5 nav-link font-weight-bold" [routerLink]="['perfil']" routerLinkActive="active" data-bs-target="#navbar"><img *ngIf="user.fotoPerfil" class="iconoPerfil" src="{{transformarAImagen(user.fotoPerfil)}}"><img class="iconoPerfil" *ngIf="!user.fotoPerfil" src="../../../../assets/img/user.png"></a>
+        <a class="h5 nav-link font-weight-bold" [routerLink]="['perfil']" routerLinkActive="active" data-bs-target="#navbar"><img *ngIf="user.fotoPerfil" class="iconoPerfil" src="{{transformarAImagen(user.fotoPerfil)}}"><img class="iconoPerfil" *ngIf="!user.fotoPerfil" src="./assets/img/user.png"></a>
 
         <a class="h5 nav-link font-weight-bold" (click)="cerrarSesion()" routerLinkActive="active" data-bs-target="#navbar"><i class="bi bi-door-closed"></i></a>
     </div>

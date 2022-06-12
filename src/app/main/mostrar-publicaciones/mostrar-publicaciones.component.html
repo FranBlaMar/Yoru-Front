@@ -1,8 +1,8 @@
 <div class="text-center mt-5" *ngIf="!visible">
-  <img src="../../../assets/img/loading.gif" class="carga">
+  <img src="./assets/img/loading.gif" class="carga">
 </div>
 <div class="text-center" *ngIf="hayPublicaciones == 0">
-  <img src="../../../assets/img/carga.gif" class="m-auto">
+  <img src="./assets/img/carga.gif" class="m-auto">
   <h2> No hay publicaciones</h2>
 </div>
 
@@ -14,7 +14,7 @@
 
         <div class="d-flex">
           <img *ngIf="publi.autor.fotoPerfil" class="perfilComentario my-auto " src="{{transformarAImagen(publi.autor.fotoPerfil)}}">
-          <img *ngIf="!publi.autor.fotoPerfil"  class="perfilComentario my-auto " src="../../../assets/img/user.png">
+          <img *ngIf="!publi.autor.fotoPerfil"  class="perfilComentario my-auto " src="./assets/img/user.png">
           <p  class="text-white"> {{publi.autor.userName}}</p>
         </div>
         <p class="small  text-white"> {{publi.fechaPublicacion}}</p>
@@ -40,7 +40,7 @@
       <div class="scroll " *ngIf="publi.comentarios.length > 0">
         <div class="d-flex mb-2"  *ngFor="let coment of publi.comentarios">
           <img *ngIf="coment.autor.fotoPerfil" class="perfilComentario mx-auto" src="{{transformarAImagen(coment.autor.fotoPerfil)}}">
-          <img *ngIf="!coment.autor.fotoPerfil" class="perfilComentario mx-auto" src="../../../assets/img/user.png">
+          <img *ngIf="!coment.autor.fotoPerfil" class="perfilComentario mx-auto" src="./assets/img/user.png">
           <p class="autorComent mx-auto">{{coment.autor.userName}}:  </p>
           <p class="comentario mx-auto">{{coment.cuerpoComentario}}</p>
         </div>

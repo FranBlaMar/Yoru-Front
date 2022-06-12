@@ -20,7 +20,7 @@ export class RealizarPublicacionComponent implements OnInit {
   titulo: string = "";
   user!: userCompleto;
   visible: boolean = false;
-  imageURL: String = "../../../assets/img/camara.jpg";
+  imageURL: String = "./assets/img/camara.jpg";
 
   ngOnInit(): void {
     this.obtenerUsuarioLogeado();

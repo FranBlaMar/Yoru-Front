@@ -32,7 +32,7 @@
                 <div class="usuario d-flex flex-wrap col-10 col-lg-8 m-auto mt-3">
                     <div class="">
                         <img *ngIf="usuario.fotoPerfil" [routerLink]="[usuario.userName]" class="img" src="{{transformarAImagen(usuario.fotoPerfil)}}">
-                        <img *ngIf="!usuario.fotoPerfil" [routerLink]="[usuario.userName]" class="img" src="../../../assets/img/user.png">
+                        <img *ngIf="!usuario.fotoPerfil" [routerLink]="[usuario.userName]" class="img" src="./assets/img/user.png">
                     </div>
                     <p class="nombreUser"> {{usuario.userName}}</p>
                     <p class="info m-auto align-items-center justify-content-center d-flex flex-wrap"> {{usuario.aboutMe}}</p>
@@ -43,7 +43,7 @@
             <div class="usuario d-flex flex-wrap col-10 col-lg-8 m-auto mt-5">
                 <div class="">
                     <img *ngIf="usuario.fotoPerfil" [routerLink]="[usuario.userName]" class="img" src="{{transformarAImagen(usuario.fotoPerfil)}}">
-                    <img *ngIf="!usuario.fotoPerfil" [routerLink]="[usuario.userName]" class="img" src="../../../assets/img/user.png">
+                    <img *ngIf="!usuario.fotoPerfil" [routerLink]="[usuario.userName]" class="img" src="./assets/img/user.png">
                 </div>
                 <p class="nombreUser" [routerLink]="[usuario.userName]"> {{usuario.userName}}</p>
                 <p class="info m-auto align-items-center justify-content-center d-flex flex-wrap" [routerLink]="[usuario.userName]"> {{usuario.aboutMe}}</p>
@@ -66,7 +66,7 @@
                 <div class="usuario d-flex flex-wrap col-10 col-lg-8 m-auto mt-5">
                     <div class="">
                         <img *ngIf="usuario.fotoPerfil" [routerLink]="[usuario.userName]" class="img" src="{{transformarAImagen(usuario.fotoPerfil)}}">
-                        <img *ngIf="!usuario.fotoPerfil" [routerLink]="[usuario.userName]" class="img" src="../../../assets/img/user.png">
+                        <img *ngIf="!usuario.fotoPerfil" [routerLink]="[usuario.userName]" class="img" src="./assets/img/user.png">
                     </div>
                     <p class="nombreUser" [routerLink]="[usuario.userName]"> {{usuario.userName}}</p>
                     <p class="info m-auto align-items-center justify-content-center d-flex flex-wrap" [routerLink]="[usuario.userName]"> {{usuario.aboutMe}}</p>
