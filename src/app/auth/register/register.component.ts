@@ -15,7 +15,7 @@ import Compressor from 'compressorjs';
 export class RegisterComponent implements OnInit {
 
   imagen!: FileList;
-  imageURL: String = "../../../assets/img/user2.png";
+  imageURL: String = "./assets/img/user2.png";
   static imagenComprimida: any;
   formularioRegistro: FormGroup = this.builder.group({
     userName: [ '', [ Validators.required, Validators.minLength(3) ],  [this.comprobarNombreUsuario()]],

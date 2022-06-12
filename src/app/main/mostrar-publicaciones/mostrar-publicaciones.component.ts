@@ -56,7 +56,6 @@ export class MostrarPublicacionesComponent implements OnInit {
         }
         else{
           this.hayPublicaciones = 1;
-          console.log(resp)
           this.publicaciones = resp;
           this.obtenerPublicacionesGustadasUserlogueado();
         }
@@ -81,7 +80,6 @@ export class MostrarPublicacionesComponent implements OnInit {
       next: (resp) => {
         this.publicacionesGustadas = resp;
         this.visible = true;
-        console.log(resp)
       },
       error: (err) => {
         this.visible = true;

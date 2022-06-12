@@ -17,8 +17,6 @@ export class EmailVerificationCodeIntroduceComponent implements OnInit {
   codigoVerificacionReal: number = this.servicio.getCodigoVerificacion();
   ngOnInit(): void {
     this.email = this.servicio.getCorreo();
-    console.log(this.codigoVerificacionIntroducido);
-    console.log(this.codigoVerificacionReal);
   }
 
 
